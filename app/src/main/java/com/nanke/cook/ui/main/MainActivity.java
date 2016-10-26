@@ -5,17 +5,11 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
-import com.google.gson.Gson;
 import com.nanke.cook.R;
 import com.nanke.cook.ui.BaseActivity;
 import com.nanke.cook.ui.main.adapter.MainViewPageAdapter;
-import com.nanke.cook.ui.main.domain.Category;
-import com.nanke.cook.ui.main.domain.Food;
-import com.nanke.cook.ui.main.source.FoodsDataSource;
+import com.nanke.cook.domain.Category;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.List;
 
 import butterknife.ButterKnife;

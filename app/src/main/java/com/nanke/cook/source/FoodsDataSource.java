@@ -1,9 +1,9 @@
-package com.nanke.cook.ui.main.source;
+package com.nanke.cook.source;
 
 import android.content.Context;
 
-import com.nanke.cook.ui.main.domain.Category;
-import com.nanke.cook.ui.main.domain.Food;
+import com.nanke.cook.domain.Category;
+import com.nanke.cook.domain.Food;
 
 import java.util.List;
 
@@ -37,6 +37,9 @@ public interface FoodsDataSource {
 
     public void getFoods(int id ,int page,ArrCallBack<Food> callBack);
 
+    public void getFoodById(int id ,ObjCallBack<Food> callBack);
+
+    public void getFoodByName(String name ,ObjCallBack<Food> callBack);
 
     public void getCategory(Context cotnext, ArrCallBack<Category> callBack);
 }

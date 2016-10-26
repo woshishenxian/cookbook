@@ -1,4 +1,4 @@
-package com.nanke.cook.ui.main.domain;
+package com.nanke.cook.domain;
 
 import java.util.List;
 

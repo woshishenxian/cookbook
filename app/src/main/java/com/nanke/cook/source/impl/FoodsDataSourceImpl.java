@@ -1,20 +1,19 @@
-package com.nanke.cook.ui.main.source.impl;
+package com.nanke.cook.source.impl;
 
 import android.content.Context;
 
 import com.google.gson.Gson;
 import com.nanke.cook.api.FoodsService;
 import com.nanke.cook.api.RetrofitManager;
-import com.nanke.cook.ui.main.domain.Category;
-import com.nanke.cook.ui.main.domain.CategoryData;
-import com.nanke.cook.ui.main.domain.Food;
-import com.nanke.cook.ui.main.domain.FoodsData;
-import com.nanke.cook.ui.main.source.FoodsDataSource;
+import com.nanke.cook.domain.Category;
+import com.nanke.cook.domain.CategoryData;
+import com.nanke.cook.domain.Food;
+import com.nanke.cook.domain.FoodsData;
+import com.nanke.cook.source.FoodsDataSource;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,11 +25,15 @@ import retrofit2.Response;
 
 public class FoodsDataSourceImpl implements FoodsDataSource {
 
+    FoodsService foodsService;
+
+    public FoodsDataSourceImpl() {
+        this.foodsService = RetrofitManager.getInstance().getRetrofit().create(FoodsService.class);
+    }
 
     @Override
     public void getFoods(int id, int page, final ArrCallBack<Food> callBack) {
         callBack.start();
-        FoodsService foodsService = RetrofitManager.getInstance().getRetrofit().create(FoodsService.class);
         foodsService.getFoods(id, page)
                 .enqueue(new Callback<FoodsData>() {
                     @Override
@@ -64,5 +67,48 @@ public class FoodsDataSourceImpl implements FoodsDataSource {
         } catch (IOException e) {
             callBack.onDataNotAvailable("解析错误");
         }
+    }
+
+
+    @Override
+    public void getFoodById(int id, final ObjCallBack<Food> callBack) {
+        callBack.start();
+        foodsService.getFoodById(id).enqueue(new Callback<Food>() {
+            @Override
+            public void onResponse(Call<Food> call, Response<Food> response) {
+                if(response.isSuccessful()){
+                    callBack.onTasksLoaded(response.body());
+                }else{
+                    callBack.onDataNotAvailable("网络异常");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Food> call, Throwable t) {
+                callBack.onDataNotAvailable(t.getMessage());
+                callBack.onComplete();
+            }
+        });
+    }
+
+    @Override
+    public void getFoodByName(String name,final ObjCallBack<Food> callBack) {
+        callBack.start();
+        foodsService.getFoodByName(name).enqueue(new Callback<Food>() {
+            @Override
+            public void onResponse(Call<Food> call, Response<Food> response) {
+                if(response.isSuccessful()){
+                    callBack.onTasksLoaded(response.body());
+                }else{
+                    callBack.onDataNotAvailable("网络异常");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Food> call, Throwable t) {
+                callBack.onDataNotAvailable(t.getMessage());
+                callBack.onComplete();
+            }
+        });
     }
 }

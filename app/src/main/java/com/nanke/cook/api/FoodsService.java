@@ -1,7 +1,8 @@
 package com.nanke.cook.api;
 
 
-import com.nanke.cook.ui.main.domain.FoodsData;
+import com.nanke.cook.domain.Food;
+import com.nanke.cook.domain.FoodsData;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -15,4 +16,11 @@ public interface FoodsService {
 
     @GET("food/list")
     Call<FoodsData> getFoods(@Query("id") int id,@Query("page") int page);
+
+    @GET("food/show")
+    Call<Food> getFoodById(@Query("id") int id);
+
+    @GET("food/name")
+    Call<Food> getFoodByName(@Query("name") String name);
+
 }

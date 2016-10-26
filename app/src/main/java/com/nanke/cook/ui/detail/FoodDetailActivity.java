@@ -16,5 +16,6 @@ public class FoodDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
 
+
     }
 }

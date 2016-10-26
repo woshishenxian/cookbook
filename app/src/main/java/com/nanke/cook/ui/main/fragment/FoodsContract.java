@@ -1,10 +1,8 @@
 package com.nanke.cook.ui.main.fragment;
 
-import android.view.View;
-
 import com.nanke.cook.BasePresenter;
 import com.nanke.cook.BaseView;
-import com.nanke.cook.ui.main.domain.Food;
+import com.nanke.cook.domain.Food;
 
 import java.util.List;
 

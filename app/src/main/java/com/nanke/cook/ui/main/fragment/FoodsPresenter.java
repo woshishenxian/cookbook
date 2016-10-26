@@ -2,9 +2,9 @@ package com.nanke.cook.ui.main.fragment;
 
 import android.view.View;
 
-import com.nanke.cook.ui.main.domain.Food;
-import com.nanke.cook.ui.main.source.FoodsDataRepository;
-import com.nanke.cook.ui.main.source.FoodsDataSource;
+import com.nanke.cook.domain.Food;
+import com.nanke.cook.source.FoodsDataRepository;
+import com.nanke.cook.source.FoodsDataSource;
 
 import java.util.List;
 
