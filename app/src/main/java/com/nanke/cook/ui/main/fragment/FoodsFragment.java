@@ -91,7 +91,7 @@ public class FoodsFragment extends Fragment implements FoodsContract.View , Foot
             public void OnClickListener(View parentV, View v, Integer position, Food values) {
                 super.OnClickListener(parentV, v, position, values);
                 //添加跳转
-                foodsPresenter.onRecyclerViewItemClick(position,values);
+                foodsPresenter.onRecyclerViewItemClick(mActivity,values);
             }
         });
 

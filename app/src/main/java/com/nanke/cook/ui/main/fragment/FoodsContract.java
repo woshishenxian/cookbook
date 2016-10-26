@@ -1,5 +1,7 @@
 package com.nanke.cook.ui.main.fragment;
 
+import android.content.Context;
+
 import com.nanke.cook.BasePresenter;
 import com.nanke.cook.BaseView;
 import com.nanke.cook.domain.Food;
@@ -27,6 +29,6 @@ public class FoodsContract {
 
         boolean onPopupMenuClick(int id, Food food);
 
-        void onRecyclerViewItemClick(int position,Food food);
+        void onRecyclerViewItemClick(Context context, Food food);
     }
 }
