@@ -1,7 +1,6 @@
 package com.nanke.cook.ui.main.fragment;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -20,7 +19,7 @@ import com.nanke.cook.BaseRecyclerViewAdapter;
 import com.nanke.cook.R;
 import com.nanke.cook.ui.BaseActivity;
 import com.nanke.cook.ui.main.adapter.FoodsRecyclerViewAdapter;
-import com.nanke.cook.ui.main.domain.Food;
+import com.nanke.cook.domain.Food;
 import com.nanke.cook.view.FooterViewFactory;
 
 import java.util.ArrayList;
@@ -92,7 +91,7 @@ public class FoodsFragment extends Fragment implements FoodsContract.View , Foot
             public void OnClickListener(View parentV, View v, Integer position, Food values) {
                 super.OnClickListener(parentV, v, position, values);
                 //添加跳转
-                foodsPresenter.onRecyclerViewItemClick(position,values);
+                foodsPresenter.onRecyclerViewItemClick(mActivity,values);
             }
         });
 

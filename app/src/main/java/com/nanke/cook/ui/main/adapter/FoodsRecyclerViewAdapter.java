@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.nanke.cook.BaseRecyclerViewAdapter;
 import com.nanke.cook.R;
-import com.nanke.cook.ui.main.domain.Food;
+import com.nanke.cook.domain.Food;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

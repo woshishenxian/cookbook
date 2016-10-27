@@ -1,10 +1,13 @@
 package com.nanke.cook.ui.main.fragment;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 
-import com.nanke.cook.ui.main.domain.Food;
-import com.nanke.cook.ui.main.source.FoodsDataRepository;
-import com.nanke.cook.ui.main.source.FoodsDataSource;
+import com.nanke.cook.domain.Food;
+import com.nanke.cook.source.FoodsDataRepository;
+import com.nanke.cook.source.FoodsDataSource;
+import com.nanke.cook.ui.detail.FoodDetailActivity;
 
 import java.util.List;
 
@@ -61,7 +64,9 @@ public class FoodsPresenter implements FoodsContract.Presenter,FoodsDataSource.A
     }
 
     @Override
-    public void onRecyclerViewItemClick(int position, Food food) {
-
+    public void onRecyclerViewItemClick(Context context, Food food) {
+        Intent intent = new Intent(context, FoodDetailActivity.class);
+        intent.putExtra("ID",food.getId());
+        context.startActivity(intent);
     }
 }

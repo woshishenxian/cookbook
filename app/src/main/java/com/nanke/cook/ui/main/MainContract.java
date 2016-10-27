@@ -4,9 +4,7 @@ import android.content.Context;
 
 import com.nanke.cook.BasePresenter;
 import com.nanke.cook.BaseView;
-import com.nanke.cook.ui.main.domain.Category;
-import com.nanke.cook.ui.main.domain.Food;
-import com.nanke.cook.ui.main.source.FoodsDataSource;
+import com.nanke.cook.domain.Category;
 
 import java.util.List;
 

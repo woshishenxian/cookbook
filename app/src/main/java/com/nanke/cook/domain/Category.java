@@ -1,4 +1,4 @@
-package com.nanke.cook.ui.main.domain;
+package com.nanke.cook.domain;
 
 /**
  * Created by vince on 16/10/25.

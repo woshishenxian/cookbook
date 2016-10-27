@@ -3,4 +3,11 @@
 
     <string name="collect">收藏</string>
     <string name="relate">相关食谱</string>
+    
+    
+    <string name="summary">简介</string>
+    <string name="disease">相关疾病</string>
+    <string name="keywords">关鍵字</string>
+    <string name="message">详情</string>
+    <string name="description">描述</string>
 </resources>

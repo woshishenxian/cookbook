@@ -1,10 +1,11 @@
-package com.nanke.cook.ui.main.domain;
+package com.nanke.cook.domain;
 
 /**
  * Created by vince on 16/10/25.
  */
 
 public class Food {
+    private int id;
     private String name;//
     private int infoclass;//分类
     private String img;//图片
@@ -17,6 +18,15 @@ public class Food {
     private String disease ;//相关疾病
     private String food ;//相关食物
     private String summary ;//简介
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
