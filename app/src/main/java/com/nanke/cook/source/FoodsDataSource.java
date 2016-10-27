@@ -43,5 +43,4 @@ public interface FoodsDataSource {
 
     public void getCategory(Context cotnext, ArrCallBack<Category> callBack);
 
-    public void getFoodById(Context cotnext, ArrCallBack<Category> callBack);
 }
