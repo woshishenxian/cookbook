@@ -2,8 +2,12 @@
     <string name="app_name">南柯食谱</string>
 
     <string name="collect">收藏</string>
+    <string name="collect_look">查看收藏</string>
+    <string name="collect_cancel">取消收藏</string>
+    <string name="collect_clear">清空收藏</string>
     <string name="relate">相关食谱</string>
-    
+
+
     
     <string name="summary">简介</string>
     <string name="disease">相关疾病</string>

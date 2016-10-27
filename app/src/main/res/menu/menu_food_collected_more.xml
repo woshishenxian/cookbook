@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/recover"
-        android:title="@string/collect" />
+        android:id="@+id/collect_cancel"
+        android:title="@string/collect_cancel" />
     <item
-        android:id="@+id/delete"
+        android:id="@+id/relate"
         android:title="@string/relate" />
 </menu>

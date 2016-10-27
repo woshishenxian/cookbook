@@ -1,4 +1,4 @@
-package com.nanke.cook.domain;
+package com.nanke.cook.entity;
 
 import java.util.List;
 

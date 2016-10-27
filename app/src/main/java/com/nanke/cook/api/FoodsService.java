@@ -4,8 +4,8 @@ package com.nanke.cook.api;
 
 
 
-import com.nanke.cook.domain.Food;
-import com.nanke.cook.domain.FoodsData;
+import com.nanke.cook.entity.Food;
+import com.nanke.cook.entity.FoodsData;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

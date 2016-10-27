@@ -2,8 +2,8 @@ package com.nanke.cook.source;
 
 import android.content.Context;
 
-import com.nanke.cook.domain.Category;
-import com.nanke.cook.domain.Food;
+import com.nanke.cook.entity.Category;
+import com.nanke.cook.entity.Food;
 
 import java.util.List;
 
@@ -43,4 +43,11 @@ public interface FoodsDataSource {
 
     public void getCategory(Context cotnext, ArrCallBack<Category> callBack);
 
+    public void collectFood(Food food);
+
+    public void delCollectedFood(Food food);
+
+    public List<Food> queryCollectedFoodByPage(int page);
+
+    public void clearCollectedFoods();
 }

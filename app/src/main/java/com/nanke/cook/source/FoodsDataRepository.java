@@ -2,9 +2,11 @@ package com.nanke.cook.source;
 
 import android.content.Context;
 
-import com.nanke.cook.domain.Category;
-import com.nanke.cook.domain.Food;
+import com.nanke.cook.entity.Category;
+import com.nanke.cook.entity.Food;
 import com.nanke.cook.source.impl.FoodsDataSourceImpl;
+
+import java.util.List;
 
 /**
  * Created by vince on 16/10/25.
@@ -36,5 +38,25 @@ public class FoodsDataRepository implements FoodsDataSource {
     @Override
     public void getFoodByName(String name, ObjCallBack<Food> callBack) {
         foodsDataSource.getFoodByName(name, callBack);
+    }
+
+    @Override
+    public void collectFood(Food food) {
+        foodsDataSource.collectFood(food);
+    }
+
+    @Override
+    public void delCollectedFood(Food food) {
+        foodsDataSource.delCollectedFood(food);
+    }
+
+    @Override
+    public List<Food> queryCollectedFoodByPage(int page) {
+        return foodsDataSource.queryCollectedFoodByPage(page);
+    }
+
+    @Override
+    public void clearCollectedFoods() {
+        foodsDataSource.clearCollectedFoods();
     }
 }

@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.nanke.cook.BaseRecyclerViewAdapter;
 import com.nanke.cook.R;
-import com.nanke.cook.domain.Food;
+import com.nanke.cook.entity.Food;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -46,7 +46,7 @@ public class FoodsRecyclerViewAdapter extends BaseRecyclerViewAdapter<Food> {
         Food food = list.get(position);
         holder.despView.setText(food.getDescription());
         holder.titleView.setText(food.getName());
-        Picasso.with(holder.imageView.getContext()).load(food.getImg()).into(holder.imageView);
+        Picasso.with(holder.imageView.getContext()).load(food.getImgUrl()).into(holder.imageView);
     }
 
 

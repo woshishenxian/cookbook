@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.nanke.cook.BasePresenter;
 import com.nanke.cook.BaseView;
-import com.nanke.cook.domain.Category;
+import com.nanke.cook.entity.Category;
 
 import java.util.List;
 

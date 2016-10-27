@@ -5,15 +5,17 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.nanke.cook.api.FoodsService;
 import com.nanke.cook.api.RetrofitManager;
-import com.nanke.cook.domain.Category;
-import com.nanke.cook.domain.CategoryData;
-import com.nanke.cook.domain.Food;
-import com.nanke.cook.domain.FoodsData;
+import com.nanke.cook.db.DBManager;
+import com.nanke.cook.entity.Category;
+import com.nanke.cook.entity.CategoryData;
+import com.nanke.cook.entity.Food;
+import com.nanke.cook.entity.FoodsData;
 import com.nanke.cook.source.FoodsDataSource;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -81,6 +83,7 @@ public class FoodsDataSourceImpl implements FoodsDataSource {
                 }else{
                     callBack.onDataNotAvailable("网络异常");
                 }
+                callBack.onComplete();
             }
 
             @Override
@@ -110,5 +113,25 @@ public class FoodsDataSourceImpl implements FoodsDataSource {
                 callBack.onComplete();
             }
         });
+    }
+
+    @Override
+    public void collectFood(Food food) {
+        DBManager.getInstance().insertFood(food);
+    }
+
+    @Override
+    public void delCollectedFood(Food food) {
+        DBManager.getInstance().deleteFood(food);
+    }
+
+    @Override
+    public List<Food> queryCollectedFoodByPage(int page) {
+        return DBManager.getInstance().queryFoodsByPage(page);
+    }
+
+    @Override
+    public void clearCollectedFoods() {
+        DBManager.getInstance().clearFoods();
     }
 }

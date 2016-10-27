@@ -16,13 +16,11 @@ import com.nanke.cook.utils.SnackbarUtils;
 public class BaseActivity extends AppCompatActivity {
 
 
-    public void showLoading() {
-
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
-    public void hideLoading() {
-
-    }
 
     public void toast(String msg) {
         SnackbarUtils.show(this,msg);

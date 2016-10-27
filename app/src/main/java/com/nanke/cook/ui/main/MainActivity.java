@@ -1,14 +1,14 @@
 package com.nanke.cook.ui.main;
 
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
 import com.nanke.cook.R;
+import com.nanke.cook.entity.Category;
 import com.nanke.cook.ui.BaseActivity;
 import com.nanke.cook.ui.main.adapter.MainViewPageAdapter;
-import com.nanke.cook.domain.Category;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ import butterknife.InjectView;
 
 public class MainActivity extends BaseActivity implements MainContract.View{
 
-    @InjectView(R.id.toolbar)
+//    @InjectView(R.id.toolbar)
     Toolbar toolbar;
     @InjectView(R.id.tabLayout)
     TabLayout tabLayout;

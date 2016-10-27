@@ -1,4 +1,4 @@
-package com.nanke.cook.domain;
+package com.nanke.cook.entity;
 
 /**
  * Created by vince on 16/10/25.

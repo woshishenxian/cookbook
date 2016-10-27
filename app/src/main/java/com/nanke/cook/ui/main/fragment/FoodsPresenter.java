@@ -4,7 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.nanke.cook.domain.Food;
+import com.nanke.cook.R;
+import com.nanke.cook.entity.Food;
 import com.nanke.cook.source.FoodsDataRepository;
 import com.nanke.cook.source.FoodsDataSource;
 import com.nanke.cook.ui.detail.FoodDetailActivity;
@@ -28,7 +29,6 @@ public class FoodsPresenter implements FoodsContract.Presenter,FoodsDataSource.A
 
     @Override
     public void getFoods(int id, int page) {
-
         foodsDataRepository.getFoods(id,page,this);
     }
 
@@ -59,8 +59,15 @@ public class FoodsPresenter implements FoodsContract.Presenter,FoodsDataSource.A
     }
 
     @Override
-    public boolean onPopupMenuClick(int id, Food food) {
-        return false;
+    public boolean onPopupMenuClick(Context context,int id, Food food) {
+        if(id == R.id.collect){
+            food.setIsCollected(true);
+            foodsDataRepository.collectFood(food);
+            view.onError("收藏成功");
+        }else if(id == R.id.relate) {
+            view.onError("跳转到食谱列表");
+        }
+        return true;
     }
 
     @Override
