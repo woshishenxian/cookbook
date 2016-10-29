@@ -5,6 +5,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
 
 import com.nanke.cook.R;
+import com.nanke.cook.utils.LogUtils;
 
 /**
  * Created by vince on 16/10/27.
@@ -42,5 +43,18 @@ public class AutoSwipeRefreshLayout extends SwipeRefreshLayout{
                 setRefreshing(false);
             }
         });
+    }
+
+
+    @Override
+    public void setRefreshing(boolean refreshing) {
+        LogUtils.i("SwipeRefreshLayout","setRefreshing");
+        super.setRefreshing(refreshing);
+    }
+
+    @Override
+    public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        LogUtils.i("SwipeRefreshLayout","onMeasure");
     }
 }
