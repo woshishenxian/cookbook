@@ -63,4 +63,9 @@ public class FoodDetailPresenter implements FoodDetailContract.Presenter, FoodsD
         }
         return true;
     }
+
+    @Override
+    public void getFoodByName(String name) {
+        repository.getFoodByName(name,this);
+    }
 }

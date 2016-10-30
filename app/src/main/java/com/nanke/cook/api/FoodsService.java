@@ -17,13 +17,13 @@ import retrofit2.http.Query;
 
 public interface FoodsService {
 
-    @GET("food/list")
+    @GET("cook/list")
     Call<FoodsData> getFoods(@Query("id") int id, @Query("page") int page);
 
-    @GET("food/show")
+    @GET("cook/show")
     Call<Food> getFoodById(@Query("id") int id);
 
-    @GET("food/name")
+    @GET("cook/name")
     Call<Food> getFoodByName(@Query("name") String name);
 
 }

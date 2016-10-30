@@ -7,6 +7,9 @@
     <string name="collect_clear">清空收藏</string>
     <string name="relate">相关食谱</string>
 
+    <string name="search">搜索</string>
+
+    <string name="search_hint">请输入...</string>
 
     
     <string name="summary">简介</string>

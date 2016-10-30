@@ -105,6 +105,7 @@ public class FoodsDataSourceImpl implements FoodsDataSource {
                 }else{
                     callBack.onDataNotAvailable("网络异常");
                 }
+                callBack.onComplete();
             }
 
             @Override

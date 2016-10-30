@@ -46,15 +46,5 @@ public class AutoSwipeRefreshLayout extends SwipeRefreshLayout{
     }
 
 
-    @Override
-    public void setRefreshing(boolean refreshing) {
-        LogUtils.i("SwipeRefreshLayout","setRefreshing");
-        super.setRefreshing(refreshing);
-    }
 
-    @Override
-    public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        LogUtils.i("SwipeRefreshLayout","onMeasure");
-    }
 }

@@ -1,5 +1,6 @@
 package com.nanke.cook.ui.detail;
 
+import android.app.SearchManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -99,17 +100,42 @@ public class FoodDetailActivity extends BaseActivity implements FoodDetailContra
 
     @Override
     public void onRefresh() {
-        foodDetailPresenter.getFoodById(getIntent().getIntExtra("ID", 1));
+        String name = getIntent().getStringExtra(SearchManager.QUERY);
+        if(name !=null){
+            foodDetailPresenter.getFoodByName(name);
+        }else{
+            foodDetailPresenter.getFoodById(getIntent().getIntExtra("ID", 1));
+        }
+
     }
 
     @Override
     public void loadFoodDetail(Food food) {
         this.food = food;
         Picasso.with(this).load(food.getImgUrl()).into(backdrop);
-        keywordsText.setText(food.getKeywords());
-        summaryText.setText(food.getSummary());
-        messageText.setText(food.getMessage());
-        diseaseText.setText(food.getDisease());
+        if(food.getKeywords()!=null){
+            keywordsText.setText(food.getKeywords());
+        }else{
+            keywordsText.setVisibility(View.GONE);
+        }
+        if(food.getSummary()!=null){
+            summaryText.setText(food.getSummary());
+        }else if(food.getDescription() !=null){
+            summaryText.setText(food.getDescription());
+        }else{
+            summaryText.setVisibility(View.GONE);
+        }
+        if(food.getMessage()!=null){
+            messageText.setText(food.getMessage());
+        }else{
+            messageText.setVisibility(View.GONE);
+        }
+        if(food.getDisease()!=null){
+            diseaseText.setText(food.getDisease());
+        }else{
+            diseaseText.setVisibility(View.GONE);
+        }
+
         toolbar.setTitle(food.getName());
     }
 

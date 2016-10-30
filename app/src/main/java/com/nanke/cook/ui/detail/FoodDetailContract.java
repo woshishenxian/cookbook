@@ -20,6 +20,8 @@ public class FoodDetailContract {
     public interface Presenter extends BasePresenter {
         void getFoodById(int id);
 
+        void getFoodByName(String name);
+
         void collectFood(Food food);
 
         boolean onMenuItemClick(Context context, int id , Food food);
