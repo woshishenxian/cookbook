@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme" >
         <activity android:name=".ui.main.MainActivity"
             android:screenOrientation="portrait"
-            >
+            android:theme="@style/MainTheme">
             <meta-data android:name="android.app.default_searchable"
                 android:value=".ui.detail.FoodDetailActivity" />
             <intent-filter>

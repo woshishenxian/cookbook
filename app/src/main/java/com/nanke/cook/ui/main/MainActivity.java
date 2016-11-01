@@ -7,26 +7,30 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 
 import com.nanke.cook.R;
 import com.nanke.cook.entity.Category;
 import com.nanke.cook.ui.BaseActivity;
 import com.nanke.cook.ui.main.adapter.MainViewPageAdapter;
+import com.nanke.cook.ui.main.fragment.MainFragment;
+import com.nanke.cook.ui.main.fragment.MineFragment;
+import com.nanke.cook.view.indicator.BaseIconFragment;
+import com.nanke.cook.view.indicator.BaseViewPager;
+import com.nanke.cook.view.indicator.IconTabPageIndicator;
+import com.nanke.cook.view.indicator.TabPagerAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class MainActivity extends BaseActivity implements MainContract.View{
+public class MainActivity extends BaseActivity {
 
-    @InjectView(R.id.toolbar)
-    Toolbar toolbar;
-    @InjectView(R.id.tabLayout)
-    TabLayout tabLayout;
-    @InjectView(R.id.view_pager)
-    ViewPager viewPager;
+    @InjectView(R.id.indicator)
+    IconTabPageIndicator indicator;
+    @InjectView(R.id.viewpager)
+    BaseViewPager viewPager;
 
 
     @Override
@@ -36,48 +40,21 @@ public class MainActivity extends BaseActivity implements MainContract.View{
 
         ButterKnife.inject(this);
 
-        initToolbar();
 
-        MainPresenter mainPresenter = new MainPresenter(this);
-        mainPresenter.getCategory(this);
+        viewPager.setNoScroll(true);
+
+        viewPager.setAdapter(new TabPagerAdapter(getSupportFragmentManager(),
+                initFragmentList()));
+        indicator.setViewPager(viewPager);
 
     }
 
-    private void initToolbar(){
-        toolbar.inflateMenu(R.menu.menu_main_more);
-        SearchManager searchManager =
-                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView =
-                (SearchView) toolbar.getMenu().findItem(R.id.search).getActionView();
-        searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(getComponentName()));
+    private  List<BaseIconFragment> initFragmentList() {
+        List<BaseIconFragment> fragments = new ArrayList<>();
+        fragments.add(new MainFragment());
+        fragments.add(new MineFragment());
+        return fragments;
     }
 
-
-    @Override
-    public void loadCategory(List<Category> categories) {
-        initMain(categories);
-    }
-
-    @Override
-    public void showLoading() {
-        showLoading();
-    }
-
-    @Override
-    public void hideLoading() {
-        hideLoading();
-    }
-
-    @Override
-    public void onError(String msg) {
-        toast(msg);
-    }
-
-    private void initMain(List<Category> categories){
-        viewPager.setAdapter(new MainViewPageAdapter(getSupportFragmentManager(),categories));
-        viewPager.setOffscreenPageLimit(3);
-        tabLayout.setupWithViewPager(viewPager);
-    }
 
 }

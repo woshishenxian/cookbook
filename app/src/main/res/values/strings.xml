@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">南柯食谱</string>
+    <string name="app_mine">个人中心</string>
+
 
     <string name="collect">收藏</string>
     <string name="collect_look">查看收藏</string>

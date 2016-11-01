@@ -71,7 +71,7 @@ public class FoodsFragment extends Fragment implements FoodsContract.View, Foote
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main, null);
+        View view = inflater.inflate(R.layout.fragment_wraprecycler, null);
         ButterKnife.inject(this, view);
         initFragment();
         foodsPresenter = new FoodsPresenter(this);
