@@ -13,25 +13,6 @@ import java.util.List;
 
 public interface FoodsDataSource {
 
-    public interface ArrCallBack<T>{
-        void onTasksLoaded(List<T> tasks);
-
-        void onDataNotAvailable(String msg);
-
-        void start();
-
-        void onComplete();
-    }
-
-    public interface ObjCallBack<T>{
-        void onTasksLoaded(T tasks);
-
-        void onDataNotAvailable(String msg);
-
-        void start();
-
-        void onComplete();
-    }
 
 
 

@@ -1,19 +1,11 @@
 package com.nanke.cook.ui.main;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
 
 import com.nanke.cook.R;
-import com.nanke.cook.entity.Category;
 import com.nanke.cook.ui.BaseActivity;
-import com.nanke.cook.ui.main.adapter.MainViewPageAdapter;
-import com.nanke.cook.ui.main.fragment.MainFragment;
-import com.nanke.cook.ui.main.fragment.MineFragment;
+import com.nanke.cook.ui.main.fragment.main.MainFragment;
+import com.nanke.cook.ui.main.fragment.mine.MineFragment;
 import com.nanke.cook.view.indicator.BaseIconFragment;
 import com.nanke.cook.view.indicator.BaseViewPager;
 import com.nanke.cook.view.indicator.IconTabPageIndicator;

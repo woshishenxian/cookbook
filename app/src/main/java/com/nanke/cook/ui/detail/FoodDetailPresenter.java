@@ -7,12 +7,13 @@ import com.nanke.cook.R;
 import com.nanke.cook.entity.Food;
 import com.nanke.cook.source.FoodsDataRepository;
 import com.nanke.cook.source.FoodsDataSource;
+import com.nanke.cook.source.ObjCallBack;
 import com.nanke.cook.ui.collect.FoodsCollectedActivity;
 
 /**
  * Created by admin on 16/10/26.
  */
-public class FoodDetailPresenter implements FoodDetailContract.Presenter, FoodsDataSource.ObjCallBack<Food> {
+public class FoodDetailPresenter implements FoodDetailContract.Presenter, ObjCallBack<Food> {
 
     private FoodDetailContract.View view;
 

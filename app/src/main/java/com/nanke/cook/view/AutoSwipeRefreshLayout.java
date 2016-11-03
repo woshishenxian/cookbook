@@ -11,7 +11,7 @@ import com.nanke.cook.utils.LogUtils;
  * Created by vince on 16/10/27.
  */
 
-public class AutoSwipeRefreshLayout extends SwipeRefreshLayout{
+public class AutoSwipeRefreshLayout extends SwipeRefreshLayout {
 
     public AutoSwipeRefreshLayout(Context context) {
         super(context);
@@ -23,28 +23,32 @@ public class AutoSwipeRefreshLayout extends SwipeRefreshLayout{
         init();
     }
 
-    private void init(){
+    private void init() {
         setColorSchemeResources(R.color.colorPrimary);
     }
 
-    public void startRefreshing(){
+    public void startRefreshing() {
+
         post(new Runnable() {
             @Override
             public void run() {
-                setRefreshing(true);
+                if (!isRefreshing()) {
+                    setRefreshing(true);
+                }
             }
         });
     }
 
-    public void stopRefreshing(){
-        post(new Runnable() {
+    public void stopRefreshing() {
+
+        postDelayed(new Runnable() {
             @Override
             public void run() {
-                setRefreshing(false);
+                if (isRefreshing()) {
+                    setRefreshing(false);
+                }
             }
-        });
+        }, 1000);
     }
-
-
 
 }

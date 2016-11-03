@@ -3,6 +3,7 @@ package com.nanke.cook.ui.main;
 import android.content.Context;
 
 import com.nanke.cook.entity.Category;
+import com.nanke.cook.source.ArrCallBack;
 import com.nanke.cook.source.FoodsDataRepository;
 import com.nanke.cook.source.FoodsDataSource;
 
@@ -12,7 +13,7 @@ import java.util.List;
  * Created by vince on 16/10/25.
  */
 
-public class MainPresenter implements MainContract.Presenter, FoodsDataSource.ArrCallBack<Category> {
+public class MainPresenter implements MainContract.Presenter, ArrCallBack<Category> {
 
     FoodsDataRepository foodsDataRepository;
     MainContract.View view;

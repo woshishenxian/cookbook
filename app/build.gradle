@@ -38,6 +38,7 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.kevin:wraprecyclerview:1.0.6'
     compile project(':library')
+    compile project(':sublimepickerlibrary')
 }
 
 buildscript {
