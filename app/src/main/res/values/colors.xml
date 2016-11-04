@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#4E6CBF</color>
-    <color name="colorPrimaryDark">#4E6CBF</color>
-    <color name="colorAccent">#4E6CBF</color>
+    <color name="colorPrimary">#F0785B</color>
+    <color name="colorPrimaryDark">@color/colorPrimary</color>
+    <color name="colorAccent">#F0785B</color>
+
+    <color name="colorBarTitle">#B8B8B8</color>
 
     <color name="tab_text_normal">#bfbfbf</color>
-    <color name="tab_text_selected">@color/colorPrimary</color>
+    <color name="tab_text_selected">@android:color/white</color>
+
+    <color name="cutLine">#F0F0F0</color>
 </resources>

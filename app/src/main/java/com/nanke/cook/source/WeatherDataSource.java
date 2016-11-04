@@ -1,5 +1,6 @@
 package com.nanke.cook.source;
 
+import com.nanke.cook.entity.weather.Data;
 import com.nanke.cook.entity.weather.Life;
 import com.nanke.cook.entity.weather.Pm25;
 import com.nanke.cook.entity.weather.Realtime;
@@ -11,6 +12,13 @@ import com.nanke.cook.entity.weather.WeatherData;
  */
 
 public interface WeatherDataSource {
+
+    /**
+     * 获取天气
+     * @param cityname
+     * @param callBack
+     */
+    public void getWeatherAll(String cityname, ObjCallBack<Data> callBack);
 
 
     /**

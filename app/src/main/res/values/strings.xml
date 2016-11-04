@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">南柯食谱</string>
-    <string name="app_mine">个人中心</string>
+    <string name="app_mine">北京</string>
 
 
     <string name="collect">收藏</string>
@@ -10,6 +10,9 @@
     <string name="relate">相关食谱</string>
 
     <string name="search">搜索</string>
+    <string name="about">关于</string>
+    <string name="setting">设置</string>
+    <string name="calendar">日历</string>
 
     <string name="search_hint">请输入...</string>
 

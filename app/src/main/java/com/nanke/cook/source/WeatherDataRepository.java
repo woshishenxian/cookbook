@@ -1,5 +1,6 @@
 package com.nanke.cook.source;
 
+import com.nanke.cook.entity.weather.Data;
 import com.nanke.cook.entity.weather.Life;
 import com.nanke.cook.entity.weather.Pm25;
 import com.nanke.cook.entity.weather.Realtime;
@@ -37,5 +38,10 @@ public class WeatherDataRepository implements WeatherDataSource{
     @Override
     public void getLife(String cityname, ObjCallBack<Life> callBack) {
         weatherDataSource.getLife(cityname, callBack);
+    }
+
+    @Override
+    public void getWeatherAll(String cityname, ObjCallBack<Data> callBack) {
+        weatherDataSource.getWeatherAll(cityname,callBack);
     }
 }

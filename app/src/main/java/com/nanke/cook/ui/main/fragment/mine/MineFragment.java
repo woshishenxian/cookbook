@@ -1,19 +1,29 @@
 package com.nanke.cook.ui.main.fragment.mine;
 
 import android.content.Context;
+import android.database.DataSetObserver;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nanke.cook.R;
+import com.nanke.cook.entity.weather.Data;
 import com.nanke.cook.entity.weather.Realtime;
 import com.nanke.cook.entity.weather.WeatherData;
 import com.nanke.cook.ui.BaseActivity;
+import com.nanke.cook.ui.main.adapter.FutureAdapter;
 import com.nanke.cook.view.AutoSwipeRefreshLayout;
+import com.nanke.cook.view.FixedListView;
 import com.nanke.cook.view.indicator.BaseIconFragment;
 
 import org.w3c.dom.Text;
@@ -30,20 +40,31 @@ import butterknife.OnClick;
 
 public class MineFragment extends BaseIconFragment implements MineContract.View, SwipeRefreshLayout.OnRefreshListener {
 
+
+
     private MinePresenter presenter;
     private BaseActivity activity;
+
+    @InjectView(R.id.toolbar)
+    Toolbar toolbar;
 
     @InjectView(R.id.swipeRefreshLayout)
     AutoSwipeRefreshLayout swipeRefreshLayout;
 
-    @InjectView(R.id.temperature)
-    TextView temperature;
-    @InjectView(R.id.date)
-    TextView date;
     @InjectView(R.id.cityname)
     TextView cityname;
+    @InjectView(R.id.time)
+    TextView time;
     @InjectView(R.id.wind)
     TextView wind;
+    @InjectView(R.id.humidity)
+    TextView humidity;
+    @InjectView(R.id.temperature)
+    TextView temperature;
+    @InjectView(R.id.weather_img)
+    TextView weather_img;
+    @InjectView(R.id.fixedListView)
+    FixedListView fixedListView;
 
 
     @Override
@@ -62,19 +83,23 @@ public class MineFragment extends BaseIconFragment implements MineContract.View,
         presenter = new MinePresenter(this);
         swipeRefreshLayout.setOnRefreshListener(this);
 
+        initToolbar();
         onRefresh();
         return view;
     }
 
-    @OnClick(R.id.btn_collect)
-    public void onCollectBtnClick() {
-        presenter.onCollectBtnClick(activity);
+    private void initToolbar(){
+        toolbar.inflateMenu(R.menu.menu_weather_more);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                presenter.onMenuItemClick(activity,item.getItemId());
+                return true;
+            }
+        });
     }
 
-    @OnClick(R.id.btn_calendar)
-    public void onCalendarBtnClick() {
-        presenter.onCalendarBtnClick(activity);
-    }
+
 
     @Override
     public void onRefresh() {
@@ -82,11 +107,18 @@ public class MineFragment extends BaseIconFragment implements MineContract.View,
     }
 
     @Override
-    public void loadWeahter(Realtime realtime) {
-        temperature.setText(realtime.getWeather().getTemperature() +"°C");
-        date.setText(realtime.getDate());
+    public void loadWeahter(Data data) {
+        Realtime realtime = data.getRealtime();
+        time.setText("更新时间: "+realtime.getTime());
         cityname.setText(realtime.getCity_name());
-        wind.setText(realtime.getWind().getDirect() + " " + realtime.getWind().getPower());
+        wind.setText("风力\n"+realtime.getWind().getDirect()  + realtime.getWind().getPower());
+        temperature.setText(realtime.getWeather().getTemperature());
+        humidity.setText(realtime.getWeather().getHumidity());
+
+        weather_img.setText(realtime.getWeather().getInfo());
+
+        fixedListView.setAdapter(new FutureAdapter(activity,data.getWeather()));
+
     }
 
     @Override
@@ -106,11 +138,11 @@ public class MineFragment extends BaseIconFragment implements MineContract.View,
 
     @Override
     public String getTitle() {
-        return "我的";
+        return "天气";
     }
 
     @Override
     public int getIconId() {
-        return R.drawable.tab_mine_selector;
+        return 0;
     }
 }

@@ -20,7 +20,7 @@
     </style>
 
     <style name="MainTabView" parent="TabView">
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="iconWidth">20dp</item>
         <item name="iconHeight">20dp</item>
     </style>

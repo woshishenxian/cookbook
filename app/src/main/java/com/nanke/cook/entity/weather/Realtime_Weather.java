@@ -14,7 +14,7 @@ public class Realtime_Weather {
     private String img;
 
     public String getTemperature() {
-        return temperature;
+        return temperature + "°";
     }
 
     public void setTemperature(String temperature) {
@@ -22,7 +22,7 @@ public class Realtime_Weather {
     }
 
     public String getHumidity() {
-        return humidity;
+        return "湿度\n"+ humidity+"%";
     }
 
     public void setHumidity(String humidity) {
@@ -39,6 +39,15 @@ public class Realtime_Weather {
 
     public String getImg() {
         return img;
+    }
+    public int getIndex() {
+        int index = 0;
+        try {
+            index = Integer.valueOf(img);
+        }catch (Exception e){
+
+        }
+        return index;
     }
 
     public void setImg(String img) {

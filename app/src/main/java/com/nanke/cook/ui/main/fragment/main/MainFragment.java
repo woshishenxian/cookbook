@@ -105,6 +105,6 @@ public class MainFragment extends BaseIconFragment implements MainContract.View{
 
     @Override
     public int getIconId() {
-        return R.drawable.tab_main_selector;
+        return 0;
     }
 }

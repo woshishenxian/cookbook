@@ -10,9 +10,9 @@
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:elevation="0dp"
         android:fitsSystemWindows="true"
-        app:elevation="0dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:theme="@style/ThemeOverlay.AppCompat.Light">
 
 
         <android.support.v7.widget.Toolbar
@@ -23,12 +23,13 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
             <TextView
+                android:id="@+id/cityname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:text="@string/app_mine"
-                android:textColor="@android:color/white"
+                android:textColor="@color/colorBarTitle"
                 android:textSize="18sp"
                 android:textStyle="normal" />
         </android.support.v7.widget.Toolbar>
@@ -52,90 +53,83 @@
                 android:background="@android:color/white"
                 android:orientation="vertical">
 
-                <RelativeLayout
+                <com.nanke.cook.view.SquareLayout
                     android:layout_width="match_parent"
-                    android:layout_height="225dp"
-                    android:background="@color/colorPrimary">
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorAccent">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:alpha="0.1"
+                        android:src="@mipmap/background_china" />
+
+                    <TextView
+                        android:id="@+id/time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:text="更新时间: 11:0:0"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/weather_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:textColor="@android:color/white"
+                        android:textSize="80sp"
+                        android:alpha="0.7"
+                        android:text="霾"/>
+
+
+                    <TextView
+                        android:id="@+id/wind"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_margin="20dp"
+                        android:text="风力\n北风1级"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/temperature"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="10"
-                        android:textColor="@android:color/white"/>
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="20dp"
+                        android:text="10°"
+                        android:textColor="@android:color/white"
+                        android:textSize="40sp" />
 
                     <TextView
-                        android:id="@+id/cityname"
-                        android:layout_below="@id/temperature"
+                        android:id="@+id/humidity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="北京"
-                        android:textColor="@android:color/white"/>
-                    <TextView
-                        android:id="@+id/date"
-                        android:layout_below="@id/cityname"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2014-10-1 九月廿二"
-                        android:textColor="@android:color/white"/>
-                    <TextView
-                        android:id="@+id/wind"
-                        android:layout_below="@id/date"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="北风 1级"
-                        android:textColor="@android:color/white"/>
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="20dp"
+                        android:text="湿度\n20%"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp" />
 
 
-                </RelativeLayout>
+                </com.nanke.cook.view.SquareLayout>
 
 
-                <android.support.v7.widget.CardView
-                    android:id="@+id/btn_collect"
+                <com.nanke.cook.view.FixedListView
+                    android:id="@+id/fixedListView"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginBottom="8dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="收藏中心"
-                        android:gravity="center_vertical"
-                        android:drawablePadding="10dp"
-                        android:padding="5dp"
-                        android:textSize="16sp"
-                        android:drawableLeft="@mipmap/collect"
-                        android:drawableRight="@mipmap/btn_right"/>
-                </android.support.v7.widget.CardView>
-
-
-                <android.support.v7.widget.CardView
-                    android:id="@+id/btn_calendar"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginBottom="16dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="我的日历"
-                        android:gravity="center_vertical"
-                        android:drawablePadding="10dp"
-                        android:padding="5dp"
-                        android:textSize="16sp"
-                        android:drawableLeft="@mipmap/calendar"
-                        android:drawableRight="@mipmap/btn_right"/>
-                </android.support.v7.widget.CardView>
-
-
+                    android:layout_height="wrap_content"
+                    android:dividerHeight="1dp"
+                    android:divider="@android:color/white"/>
 
             </LinearLayout>
 
