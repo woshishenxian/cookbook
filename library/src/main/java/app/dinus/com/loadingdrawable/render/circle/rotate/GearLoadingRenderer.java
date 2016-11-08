@@ -9,11 +9,13 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.support.annotation.IntRange;
+import android.util.TypedValue;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 
 import app.dinus.com.loadingdrawable.DensityUtil;
+import app.dinus.com.loadingdrawable.R;
 import app.dinus.com.loadingdrawable.render.LoadingRenderer;
 
 public class GearLoadingRenderer extends LoadingRenderer {
@@ -91,10 +93,17 @@ public class GearLoadingRenderer extends LoadingRenderer {
         mStrokeWidth = DensityUtil.dip2px(context, DEFAULT_STROKE_WIDTH);
         mCenterRadius = DensityUtil.dip2px(context, DEFAULT_CENTER_RADIUS);
 
-        mColor = DEFAULT_COLOR;
+        int colorPrimary = getColorPrimary(context);
+        mColor = colorPrimary;
 
         mGearCount = GEAR_COUNT;
         mGearSwipeDegrees = DEFAULT_GEAR_SWIPE_DEGREES;
+    }
+
+    private int getColorPrimary(Context context){
+        TypedValue typedValue = new  TypedValue();
+        context.getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+        return typedValue.data;
     }
 
     private void setupPaint() {

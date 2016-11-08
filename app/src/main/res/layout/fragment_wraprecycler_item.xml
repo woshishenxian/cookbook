@@ -3,26 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/item_vertical_margin"
+    android:paddingLeft="@dimen/item_horizontal_margin"
+    android:paddingRight="@dimen/item_horizontal_margin">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/foods_item_root"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/card_margin"
-        app:cardCornerRadius="5dp"
-        app:cardElevation="3dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp">
+        android:background="@drawable/bg_cardview"
+        android:id="@+id/foods_item_root"
+        android:padding="8dp">
 
 
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
 
             <ImageView
                 android:id="@+id/imageView"
@@ -39,8 +36,8 @@
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@id/imageView"
                 android:lines="1"
-                tools:text="标题标题标题标题标题标题标题标题"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                tools:text="标题标题标题标题标题标题标题标题" />
 
             <TextView
                 android:id="@+id/despView"
@@ -52,19 +49,19 @@
                 android:layout_toRightOf="@id/imageView"
                 android:ellipsize="end"
                 android:maxLines="2"
-                tools:text="描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                tools:text="描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述" />
 
         </RelativeLayout>
-            <ImageButton
-                android:id="@+id/food_more"
-                android:clickable="true"
-                android:focusable="true"
-                android:padding="4dp"
-                android:background="?android:attr/selectableItemBackground"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_more_grey"/>
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
+
+        <ImageButton
+            android:id="@+id/food_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="4dp"
+            android:src="@mipmap/ic_more_grey" />
+    </LinearLayout>
 </FrameLayout>

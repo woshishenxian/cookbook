@@ -13,12 +13,13 @@
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/colorPrimary" />
+        android:layout_height="0.5dp"
+        android:background="@color/cutLine" />
 
     <com.nanke.cook.view.indicator.IconTabPageIndicator
         android:id="@+id/indicator"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"/>
 
 </LinearLayout>

@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -36,17 +37,10 @@ public class FoodDetailActivity extends BaseActivity implements FoodDetailContra
     @InjectView(R.id.backdrop)
     ImageView backdrop;
 
-    @InjectView(R.id.summaryText)
-    TextView summaryText;
-
-    @InjectView(R.id.keywordsText)
-    TextView keywordsText;
 
     @InjectView(R.id.messageText)
     TextView messageText;
 
-    @InjectView(R.id.diseaseText)
-    TextView diseaseText;
 
     @InjectView(R.id.btn_collect)
     FloatingActionButton btn_collect;
@@ -113,27 +107,9 @@ public class FoodDetailActivity extends BaseActivity implements FoodDetailContra
     public void loadFoodDetail(Food food) {
         this.food = food;
         Picasso.with(this).load(food.getImgUrl()).into(backdrop);
-        if(food.getKeywords()!=null){
-            keywordsText.setText(food.getKeywords());
-        }else{
-            keywordsText.setVisibility(View.GONE);
-        }
-        if(food.getSummary()!=null){
-            summaryText.setText(food.getSummary());
-        }else if(food.getDescription() !=null){
-            summaryText.setText(food.getDescription());
-        }else{
-            summaryText.setVisibility(View.GONE);
-        }
+
         if(food.getMessage()!=null){
-            messageText.setText(food.getMessage());
-        }else{
-            messageText.setVisibility(View.GONE);
-        }
-        if(food.getDisease()!=null){
-            diseaseText.setText(food.getDisease());
-        }else{
-            diseaseText.setVisibility(View.GONE);
+            messageText.setText(Html.fromHtml(food.getMessage()));
         }
 
         toolbar.setTitle(food.getName());

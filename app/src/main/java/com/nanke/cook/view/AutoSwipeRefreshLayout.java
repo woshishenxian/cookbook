@@ -1,8 +1,10 @@
 package com.nanke.cook.view;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 
 import com.nanke.cook.R;
 import com.nanke.cook.utils.LogUtils;
@@ -15,16 +17,22 @@ public class AutoSwipeRefreshLayout extends SwipeRefreshLayout {
 
     public AutoSwipeRefreshLayout(Context context) {
         super(context);
-        init();
+        init(context);
     }
 
     public AutoSwipeRefreshLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
+        init(context);
     }
 
-    private void init() {
-        setColorSchemeResources(R.color.colorPrimary);
+    private void init(Context context) {
+        setColorSchemeColors(getColorPrimary(context));
+    }
+
+    private int getColorPrimary(Context context){
+        TypedValue typedValue = new  TypedValue();
+        context.getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+        return typedValue.data;
     }
 
     public void startRefreshing() {

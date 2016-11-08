@@ -8,10 +8,12 @@ import java.util.List;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -31,7 +33,6 @@ public class IconTabPageIndicator extends LinearLayout implements PageIndicator 
      * Title text used when no title is provided by the adapter.
      */
     private static final CharSequence EMPTY_TITLE = "";
-    private List<TabView> tabViews;
 
     /**
      * Interface for a callback when the selected tab has been reselected.
@@ -80,7 +81,6 @@ public class IconTabPageIndicator extends LinearLayout implements PageIndicator 
         setHorizontalScrollBarEnabled(false);
 
         mTabLayout = new LinearLayout(context, null);
-        tabViews = new ArrayList<TabView>();
         addView(mTabLayout, new ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT));
     }
 
@@ -150,8 +150,10 @@ public class IconTabPageIndicator extends LinearLayout implements PageIndicator 
         tabView.setPadding(0, dip2px(6), 0, dip2px(3));
         if (iconResId > 0) {
             tabView.setIcon(iconResId);
+        }else{
+            tabView.setGravity(Gravity.CENTER);
         }
-        tabViews.add(tabView);
+
         mTabLayout.addView(tabView, new LayoutParams(0, MATCH_PARENT, 1));
     }
     
@@ -303,7 +305,4 @@ public class IconTabPageIndicator extends LinearLayout implements PageIndicator 
         
     }
 
-	public List<TabView> getTabViews() {
-		return tabViews;
-	}
 }
