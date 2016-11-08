@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.nanke.cook.ui.main.fragment.mine;
+package com.nanke.cook.ui.weather.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

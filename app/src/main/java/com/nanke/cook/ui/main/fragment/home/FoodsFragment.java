@@ -1,4 +1,4 @@
-package com.nanke.cook.ui.main.fragment.main;
+package com.nanke.cook.ui.main.fragment.home;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -20,6 +20,7 @@ import com.nanke.cook.R;
 import com.nanke.cook.ui.BaseActivity;
 import com.nanke.cook.ui.main.adapter.FoodsRecyclerViewAdapter;
 import com.nanke.cook.entity.Food;
+import com.nanke.cook.utils.LogUtils;
 import com.nanke.cook.view.AutoSwipeRefreshLayout;
 import com.nanke.cook.view.FooterViewFactory;
 
@@ -94,6 +95,7 @@ public class FoodsFragment extends Fragment implements FoodsContract.View, Foote
             public void OnClickListener(View parentV, View v, Integer position, Food values) {
                 super.OnClickListener(parentV, v, position, values);
                 //添加跳转
+                LogUtils.i("food_turn",position+"");
                 foodsPresenter.onRecyclerViewItemClick(mActivity, values);
             }
         });

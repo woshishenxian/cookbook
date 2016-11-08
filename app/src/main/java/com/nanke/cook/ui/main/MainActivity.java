@@ -4,8 +4,8 @@ import android.os.Bundle;
 
 import com.nanke.cook.R;
 import com.nanke.cook.ui.BaseActivity;
-import com.nanke.cook.ui.main.fragment.main.MainFragment;
-import com.nanke.cook.ui.main.fragment.mine.MineFragment;
+import com.nanke.cook.ui.main.fragment.home.HomeFragment;
+import com.nanke.cook.ui.main.fragment.daily.DailyFragment;
 import com.nanke.cook.view.indicator.BaseIconFragment;
 import com.nanke.cook.view.indicator.BaseViewPager;
 import com.nanke.cook.view.indicator.IconTabPageIndicator;
@@ -43,8 +43,8 @@ public class MainActivity extends BaseActivity {
 
     private  List<BaseIconFragment> initFragmentList() {
         List<BaseIconFragment> fragments = new ArrayList<>();
-        fragments.add(new MainFragment());
-        fragments.add(new MineFragment());
+        fragments.add(new HomeFragment());
+        fragments.add(new DailyFragment());
         return fragments;
     }
 

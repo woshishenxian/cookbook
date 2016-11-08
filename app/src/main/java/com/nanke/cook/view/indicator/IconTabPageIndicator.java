@@ -147,7 +147,6 @@ public class IconTabPageIndicator extends LinearLayout implements PageIndicator 
         tabView.mIndex = index;
         tabView.setOnClickListener(mTabClickListener);
         tabView.setText(text);
-        tabView.setBackgroundResource(R.color.colorAccent);
         tabView.setPadding(0, dip2px(6), 0, dip2px(3));
         if (iconResId > 0) {
             tabView.setIcon(iconResId);

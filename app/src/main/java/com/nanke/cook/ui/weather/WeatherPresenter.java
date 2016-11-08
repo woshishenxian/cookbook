@@ -1,7 +1,6 @@
-package com.nanke.cook.ui.main.fragment.mine;
+package com.nanke.cook.ui.weather;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 
@@ -10,23 +9,21 @@ import com.appeaser.sublimepickerlibrary.helpers.SublimeOptions;
 import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicker;
 import com.nanke.cook.R;
 import com.nanke.cook.entity.weather.Data;
-import com.nanke.cook.entity.weather.Realtime;
-import com.nanke.cook.entity.weather.WeatherData;
 import com.nanke.cook.source.ObjCallBack;
 import com.nanke.cook.source.WeatherDataRepository;
 import com.nanke.cook.ui.BaseActivity;
-import com.nanke.cook.ui.collect.FoodsCollectedActivity;
+import com.nanke.cook.ui.weather.fragment.SublimePickerFragment;
 
 /**
  * Created by vince on 16/11/3.
  */
 
-public class MinePresenter implements MineContract.Presenter {
+public class WeatherPresenter implements WeatherContract.Presenter {
 
-    private MineContract.View view;
+    private WeatherContract.View view;
     private WeatherDataRepository weatherDataRepository;
 
-    public MinePresenter(MineContract.View view) {
+    public WeatherPresenter(WeatherContract.View view) {
         this.view= view;
         weatherDataRepository = new WeatherDataRepository();
 

@@ -1,16 +1,17 @@
-package com.nanke.cook.ui.main.fragment.main;
+package com.nanke.cook.ui.main.fragment.home;
 
 import android.app.SearchManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -31,7 +32,7 @@ import butterknife.InjectView;
  * Created by vince on 16/10/31.
  */
 
-public class MainFragment extends BaseIconFragment implements MainContract.View{
+public class HomeFragment extends BaseIconFragment implements MainContract.View{
 
     @InjectView(R.id.toolbar)
     Toolbar toolbar;
@@ -68,6 +69,27 @@ public class MainFragment extends BaseIconFragment implements MainContract.View{
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(toolbar.getMenu().findItem(R.id.search));
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(mActivity.getComponentName()));
+        searchView.setQueryHint(getString(R.string.search_hint));
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+//                recyclerAdapter.getFilter().filter(s);
+                return true;
+            }
+        });
+//        MenuItemCompat.setOnActionExpandListener(searchItem, mainPresenter);
+    }
+
+    private void initMain(List<Category> categories){
+        viewPager.setAdapter(new MainViewPageAdapter(mActivity.getSupportFragmentManager(),categories));
+        viewPager.setOffscreenPageLimit(3);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
 
@@ -78,23 +100,17 @@ public class MainFragment extends BaseIconFragment implements MainContract.View{
 
     @Override
     public void showLoading() {
-        showLoading();
+//        showLoading();
     }
 
     @Override
     public void hideLoading() {
-        hideLoading();
+//        hideLoading();
     }
 
     @Override
     public void onError(String msg) {
         mActivity.toast(msg);
-    }
-
-    private void initMain(List<Category> categories){
-        viewPager.setAdapter(new MainViewPageAdapter(mActivity.getSupportFragmentManager(),categories));
-        viewPager.setOffscreenPageLimit(3);
-        tabLayout.setupWithViewPager(viewPager);
     }
 
 

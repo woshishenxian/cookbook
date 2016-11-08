@@ -1,4 +1,4 @@
-package com.nanke.cook.ui.main.fragment.main;
+package com.nanke.cook.ui.main.fragment.home;
 
 import android.content.Context;
 

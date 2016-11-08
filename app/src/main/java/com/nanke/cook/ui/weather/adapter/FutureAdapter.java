@@ -1,4 +1,4 @@
-package com.nanke.cook.ui.main.adapter;
+package com.nanke.cook.ui.weather.adapter;
 
 import android.content.Context;
 import android.database.DataSetObserver;

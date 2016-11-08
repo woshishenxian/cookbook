@@ -1,4 +1,4 @@
-package com.nanke.cook.ui.main.fragment.mine;
+package com.nanke.cook.ui.weather;
 
 import android.content.Context;
 
@@ -13,7 +13,7 @@ import com.nanke.cook.ui.BaseActivity;
  * Created by vince on 16/11/3.
  */
 
-public class MineContract {
+public class WeatherContract {
 
     public interface View extends BaseView{
         public void loadWeahter(Data data);

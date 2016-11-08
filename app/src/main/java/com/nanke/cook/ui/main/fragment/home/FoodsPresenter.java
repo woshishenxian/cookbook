@@ -1,4 +1,4 @@
-package com.nanke.cook.ui.main.fragment.main;
+package com.nanke.cook.ui.main.fragment.home;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,7 +8,6 @@ import com.nanke.cook.R;
 import com.nanke.cook.entity.Food;
 import com.nanke.cook.source.ArrCallBack;
 import com.nanke.cook.source.FoodsDataRepository;
-import com.nanke.cook.source.FoodsDataSource;
 import com.nanke.cook.ui.detail.FoodDetailActivity;
 
 import java.util.List;

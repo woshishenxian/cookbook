@@ -14,12 +14,9 @@
     <string name="setting">设置</string>
     <string name="calendar">日历</string>
 
-    <string name="search_hint">请输入...</string>
+    <string name="search_hint">搜索美食</string>
 
     
-    <string name="summary">简介</string>
-    <string name="disease">相关疾病</string>
-    <string name="keywords">关鍵字</string>
+    <string name="keywords">材料</string>
     <string name="message">详情</string>
-    <string name="description">描述</string>
 </resources>
