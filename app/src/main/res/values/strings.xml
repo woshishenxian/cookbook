@@ -22,4 +22,7 @@
     
     <string name="keywords">材料</string>
     <string name="message">详情</string>
+    <string name="change_theme_key">change_theme_key</string>
+    <string name="change_theme">更换主题</string>
+
 </resources>
