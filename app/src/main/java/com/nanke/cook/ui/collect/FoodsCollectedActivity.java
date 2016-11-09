@@ -79,7 +79,7 @@ public class FoodsCollectedActivity extends BaseActivity implements FoodsCollect
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                return foodCollectedPresenter.onMenuItemClick(item.getItemId());
+                return foodCollectedPresenter.onMenuItemClick(FoodsCollectedActivity.this,item.getItemId());
             }
         });
     }

@@ -1,10 +1,16 @@
 package com.nanke.cook.ui.collect;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
+import android.view.KeyEvent;
 import android.view.View;
 
+import com.flyco.dialog.listener.OnBtnClickL;
+import com.flyco.dialog.widget.MaterialDialog;
+import com.flyco.dialog.widget.NormalDialog;
 import com.nanke.cook.R;
 import com.nanke.cook.entity.Food;
 import com.nanke.cook.source.FoodsDataRepository;
@@ -73,15 +79,28 @@ public class FoodsCollectedPresenter implements FoodsCollectedContract.Presenter
 
 
     @Override
-    public boolean onMenuItemClick(int itemId) {
+    public boolean onMenuItemClick(Context context,int itemId) {
         if(itemId == R.id.collect_clear){
-            clearCollectedFoods();
-            getCollectedFoods(1);
+            clearCollectedFoods(context);
         }
         return true;
     }
 
-    private void clearCollectedFoods() {
-        foodsDataRepository.clearCollectedFoods();
+    private void clearCollectedFoods(Context context) {
+        String[] btns = {  "取消", "清空" };
+        MaterialDialog dialog = new MaterialDialog(context);
+        dialog.title("温馨提示")
+                .content("确定要清空收藏夹吗?")
+                .btnText(btns).widthScale(0.7f).show();
+
+        dialog.setOnBtnClickL(null,new OnBtnClickL() {
+            @Override
+            public void onBtnClick() {
+                foodsDataRepository.clearCollectedFoods();
+                getCollectedFoods(1);
+            }
+        });
+
+
     }
 }

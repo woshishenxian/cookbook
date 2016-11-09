@@ -60,13 +60,7 @@ public class WeatherPresenter implements WeatherContract.Presenter {
 
     @Override
     public void onMenuItemClick(Context context, int itemId) {
-        if(itemId == R.id.calendar){
-            onCalendarBtnClick((BaseActivity) context);
-        }else if(itemId == R.id.setting){
 
-        }else if(itemId == R.id.about){
-
-        }
     }
 
 

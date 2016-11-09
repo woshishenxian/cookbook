@@ -30,7 +30,7 @@ public class FoodsCollectedContract {
 
         void onRecyclerViewItemClick(Context context, Food food);
 
-        boolean onMenuItemClick(int itemId);
+        boolean onMenuItemClick(Context context,int itemId);
 
     }
 }
