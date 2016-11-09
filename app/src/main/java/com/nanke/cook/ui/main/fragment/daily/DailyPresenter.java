@@ -3,10 +3,12 @@ package com.nanke.cook.ui.main.fragment.daily;
 import android.content.Context;
 import android.content.Intent;
 
+import com.nanke.cook.R;
 import com.nanke.cook.entity.Category;
 import com.nanke.cook.entity.Food;
 import com.nanke.cook.source.ArrCallBack;
 import com.nanke.cook.source.FoodsDataRepository;
+import com.nanke.cook.ui.collect.FoodsCollectedActivity;
 import com.nanke.cook.ui.detail.FoodDetailActivity;
 
 import java.util.Calendar;
@@ -46,7 +48,12 @@ public class DailyPresenter implements DailyContract.Presenter {
 
     @Override
     public boolean onPopupMenuClick(Context context, int id) {
-        return false;
+        if(id == R.id.btn_collect_center){
+            context.startActivity(new Intent(context, FoodsCollectedActivity.class));
+        }else if(id == R.id.btn_share){
+
+        }
+        return true;
     }
 
     @Override

@@ -64,7 +64,6 @@
             android:layout_width="240dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="#99b2b2b2"
             app:headerLayout="@layout/fragment_home_drawer_header"
             app:menu="@menu/menu_activity_main_drawer" />
 

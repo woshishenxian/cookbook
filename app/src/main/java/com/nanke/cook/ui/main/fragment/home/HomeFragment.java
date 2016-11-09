@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
@@ -12,14 +13,19 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.ViewSwitcher;
 
 import com.nanke.cook.R;
 import com.nanke.cook.entity.Category;
+import com.nanke.cook.entity.weather.Realtime;
 import com.nanke.cook.ui.BaseActivity;
-import com.nanke.cook.ui.main.MainContract;
-import com.nanke.cook.ui.main.MainPresenter;
+import com.nanke.cook.ui.main.MainActivity;
 import com.nanke.cook.ui.main.adapter.MainViewPageAdapter;
 import com.nanke.cook.view.indicator.BaseIconFragment;
 
@@ -32,7 +38,7 @@ import butterknife.InjectView;
  * Created by vince on 16/10/31.
  */
 
-public class HomeFragment extends BaseIconFragment implements MainContract.View{
+public class HomeFragment extends BaseIconFragment implements HomeContract.View {
 
     @InjectView(R.id.toolbar)
     Toolbar toolbar;
@@ -42,90 +48,73 @@ public class HomeFragment extends BaseIconFragment implements MainContract.View{
     ViewPager viewPager;
     @InjectView(R.id.mDrawerLayout)
     DrawerLayout mDrawerLayout;
+    @InjectView(R.id.navi)
+    NavigationView navi;
 
-    ActionBarDrawerToggle mDrawerToggle;
+    TextView cityNameView;
+    TextView temperatureView;
+    ImageView weather_img;
 
-    private BaseActivity mActivity;
+    private MainActivity mActivity;
+    private HomePresenter mainPresenter;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mActivity = (BaseActivity) context;
+        mActivity = (MainActivity) context;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home_root,null);
-        ButterKnife.inject(this,view);
+        View view = inflater.inflate(R.layout.fragment_home_root, null);
+        ButterKnife.inject(this, view);
 
-        initToolbar();
+        initNavigationView();
 
-        MainPresenter mainPresenter = new MainPresenter(this);
+        mainPresenter = new HomePresenter(this);
+        mainPresenter.initToolbar(mActivity, toolbar, mDrawerLayout);
         mainPresenter.getCategory(mActivity);
+        mainPresenter.getWeatherToday("北京");
         return view;
     }
 
-    private void initToolbar(){
-        toolbar.inflateMenu(R.menu.menu_main_more);
-        SearchManager searchManager =
-                (SearchManager) mActivity.getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(toolbar.getMenu().findItem(R.id.search));
-        searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(mActivity.getComponentName()));
-        searchView.setQueryHint(getString(R.string.search_hint));
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                return true;
-            }
+    private void initNavigationView() {
+        //获取headerview
+        View headerView = navi.getHeaderView(0);
+        weather_img = (ImageView) headerView.findViewById(R.id.weather_img);
+        temperatureView = (TextView) headerView.findViewById(R.id.temperatureView);
+        cityNameView = (TextView) headerView.findViewById(R.id.cityNameView);
 
-            @Override
-            public boolean onQueryTextChange(String s) {
-//                recyclerAdapter.getFilter().filter(s);
-                return true;
-            }
-        });
-//        MenuItemCompat.setOnActionExpandListener(searchItem, mainPresenter);
-
-        mDrawerToggle = new ActionBarDrawerToggle(
-                getActivity(),                  /* host Activity */
-                mDrawerLayout,         /* DrawerLayout object */
-                toolbar,  /* nav drawer image to replace 'Up' caret */
-                0,  /* "open drawer" description for accessibility */
-                0  /* "close drawer" description for accessibility */
-        ) {
-            public void onDrawerClosed(View view) {
-
-            }
-            public void onDrawerOpened(View drawerView) {
-
-            }
-        };
-        mDrawerLayout.addDrawerListener(mDrawerToggle);
-    }
-
-    private void initMain(List<Category> categories){
-        viewPager.setAdapter(new MainViewPageAdapter(mActivity.getSupportFragmentManager(),categories));
-        viewPager.setOffscreenPageLimit(3);
-        tabLayout.setupWithViewPager(viewPager);
+        //监听各个菜单
+        navi.setNavigationItemSelectedListener(onNavigationItemSelectedListener);
     }
 
 
     @Override
     public void loadCategory(List<Category> categories) {
-        initMain(categories);
+        viewPager.setAdapter(new MainViewPageAdapter(mActivity.getSupportFragmentManager(), categories));
+        viewPager.setOffscreenPageLimit(3);
+        tabLayout.setupWithViewPager(viewPager);
+    }
+
+    @Override
+    public void loadWeatherToday(Realtime realtime) {
+
+        weather_img.setImageResource(realtime.getWeather().getImgRes());
+        temperatureView.setText(realtime.getWeather().getTemperature());
+        cityNameView.setText(realtime.getCity_name());
     }
 
     @Override
     public void showLoading() {
-//        showLoading();
+
     }
 
     @Override
     public void hideLoading() {
-//        hideLoading();
+
     }
 
     @Override
@@ -143,4 +132,14 @@ public class HomeFragment extends BaseIconFragment implements MainContract.View{
     public int getIconId() {
         return 0;
     }
+
+
+    private NavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener = new NavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(MenuItem item) {
+            return mainPresenter.onNavigationItemSelectedListener(mActivity,item);
+        }
+    };
+
+
 }

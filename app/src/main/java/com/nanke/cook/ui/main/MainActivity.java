@@ -24,6 +24,8 @@ public class MainActivity extends BaseActivity {
     @InjectView(R.id.viewpager)
     BaseViewPager viewPager;
 
+    BackPressedInterface mBackPressedInterface;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,4 +51,15 @@ public class MainActivity extends BaseActivity {
     }
 
 
+    @Override
+    public void onBackPressed() {
+        if(mBackPressedInterface.onBackPressed()){
+            return;
+        }
+        super.onBackPressed();
+    }
+
+    public void setmBackPressedInterface(BackPressedInterface mBackPressedInterface){
+        this.mBackPressedInterface = mBackPressedInterface;
+    }
 }

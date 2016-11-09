@@ -64,7 +64,7 @@ public class WeatherActivity extends BaseActivity implements WeatherContract.Vie
 
     private void initToolbar() {
 
-        toolbar.inflateMenu(R.menu.menu_weather_more);
+        toolbar.inflateMenu(R.menu.menu_daily_more);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {

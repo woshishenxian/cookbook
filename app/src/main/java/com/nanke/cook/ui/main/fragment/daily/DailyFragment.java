@@ -3,7 +3,6 @@ package com.nanke.cook.ui.main.fragment.daily;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
@@ -19,8 +18,6 @@ import com.nanke.cook.R;
 import com.nanke.cook.entity.Food;
 import com.nanke.cook.ui.BaseActivity;
 import com.nanke.cook.ui.main.adapter.DailyAdapter;
-import com.nanke.cook.utils.LogUtils;
-import com.nanke.cook.view.AutoSwipeRefreshLayout;
 import com.nanke.cook.view.indicator.BaseIconFragment;
 import com.nanke.cook.view.swipefling.SwipeFlingAdapterView;
 
@@ -82,7 +79,7 @@ public class DailyFragment extends BaseIconFragment implements DailyContract.Vie
     }
 
     private void initToolbar() {
-        toolbar.inflateMenu(R.menu.menu_weather_more);
+        toolbar.inflateMenu(R.menu.menu_daily_more);
         Menu menu = toolbar.getMenu();
         if(menu instanceof PopupMenu){
             ((PopupMenu) menu).setGravity(Gravity.BOTTOM);
@@ -90,8 +87,8 @@ public class DailyFragment extends BaseIconFragment implements DailyContract.Vie
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                dailyPresenter.onPopupMenuClick(activity, item.getItemId());
-                return true;
+
+                return dailyPresenter.onPopupMenuClick(activity, item.getItemId());
             }
         });
     }
