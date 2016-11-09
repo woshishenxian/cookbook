@@ -98,9 +98,9 @@ public class DailyAdapter extends BaseAdapter {
         public ViewHolder(View convertView) {
             this.portraitView = (ImageView) convertView.findViewById(R.id.portrait);
             this.titleView = (TextView) convertView.findViewById(R.id.title);
-            this.favorite = (TextView) convertView.findViewById(R.id.favorite);
+//            this.favorite = (TextView) convertView.findViewById(R.id.favorite);
 
-            favorite.setOnClickListener(this);
+//            favorite.setOnClickListener(this);
         }
 
         @Override
