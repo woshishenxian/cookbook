@@ -50,20 +50,33 @@ public class HomePresenter implements HomeContract.Presenter {
     }
 
     @Override
-    public NavigationView.OnNavigationItemSelectedListener getNavigationItemSelectedListener() {
-        return onNavigationItemSelectedListener;
+    public boolean onNavigationItemSelected(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.btn_calendar:
+                view.showCalendar();
+                break;
+            case R.id.btn_collect_center:
+                view.turnToFoodsCollected();
+                break;
+            case R.id.btn_theme:
+                view.showThemeChooseDialog();
+                break;
+            case R.id.btn_about:
+                view.turnToAbout();
+                break;
+        }
+        return true;
     }
 
     @Override
-    public SublimePickerFragment.Callback getSublimePickerFragmentCallback() {
-        return mFragmentCallback;
+    public void onThemeChooseItemClick(int position) {
+            view.saveAndNotifyThemeChange(position);
     }
 
     @Override
-    public AdapterView.OnItemClickListener getThemeChooseItemListener() {
-        return onThemeChoose;
-    }
+    public void SublimePickerFragmentCallback() {
 
+    }
 
     //分类数据回调
     private ArrCallBack<Category> categoryArrCallBack = new ArrCallBack<Category>() {
@@ -108,47 +121,6 @@ public class HomePresenter implements HomeContract.Presenter {
         @Override
         public void onComplete() {
             view.hideLoading();
-        }
-    };
-
-    private NavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener = new NavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(MenuItem menuItem) {
-            switch (menuItem.getItemId()) {
-                case R.id.btn_calendar:
-                    view.showCalendar();
-                    break;
-                case R.id.btn_collect_center:
-                    view.turnToFoodsCollected();
-                    break;
-                case R.id.btn_theme:
-                    view.showThemeChooseDialog();
-                    break;
-                case R.id.btn_about:
-                    view.turnToAbout();
-                    break;
-            }
-            return true;
-        }
-    };
-
-    public AdapterView.OnItemClickListener onThemeChoose = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-            view.saveAndNotifyThemeChange(position);
-        }
-    };
-
-
-    SublimePickerFragment.Callback mFragmentCallback = new SublimePickerFragment.Callback() {
-        @Override
-        public void onCancelled() {
-
-        }
-
-        @Override
-        public void onDateTimeRecurrenceSet(SelectedDate selectedDate, int hourOfDay, int minute, SublimeRecurrencePicker.RecurrenceOption recurrenceOption, String recurrenceRule) {
-
         }
     };
 

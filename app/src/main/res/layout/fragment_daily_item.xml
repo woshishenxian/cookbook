@@ -55,7 +55,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/bg_btn_favorite"
-                android:drawableLeft="@mipmap/btn_collect"
+                android:drawableLeft="@drawable/btn_collect"
                 android:drawablePadding="10dp"
                 android:paddingBottom="10dp"
                 android:paddingLeft="30dp"
