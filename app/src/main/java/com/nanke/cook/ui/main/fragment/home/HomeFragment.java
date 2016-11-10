@@ -27,7 +27,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
+import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
 import com.appeaser.sublimepickerlibrary.helpers.SublimeOptions;
+import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicker;
 import com.nanke.cook.R;
 import com.nanke.cook.entity.Category;
 import com.nanke.cook.entity.weather.Realtime;
@@ -144,7 +146,8 @@ public class HomeFragment extends BaseIconFragment implements HomeContract.View 
         cityNameView = (TextView) headerView.findViewById(R.id.cityNameView);
 
         //监听各个菜单
-//        navi.setNavigationItemSelectedListener(mainPresenter.getNavigationItemSelectedListener());
+
+        navi.setNavigationItemSelectedListener(onNavigationItemSelectedListener);
     }
 
 
@@ -179,7 +182,7 @@ public class HomeFragment extends BaseIconFragment implements HomeContract.View 
         builder.setView(gridView);
         final AlertDialog dialog = builder.create();
         dialog.show();
-        gridView.setOnItemClickListener(mainPresenter.getThemeChooseItemListener());
+        gridView.setOnItemClickListener(onThemeChooseListener);
 
     }
 
@@ -200,7 +203,7 @@ public class HomeFragment extends BaseIconFragment implements HomeContract.View 
     @Override
     public void showCalendar() {
         SublimePickerFragment pickerFrag = new SublimePickerFragment();
-        pickerFrag.setCallback(mainPresenter.getSublimePickerFragmentCallback());
+        pickerFrag.setCallback(mFragmentCallback);
 
         SublimeOptions options = new SublimeOptions();
         options.setPickerToShow(SublimeOptions.Picker.DATE_PICKER);
@@ -261,5 +264,33 @@ public class HomeFragment extends BaseIconFragment implements HomeContract.View 
         }
         return false;
     }
+
+
+    private NavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener = new NavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(MenuItem menuItem) {
+            return mainPresenter.onNavigationItemSelected(menuItem);
+        }
+    };
+
+    private AdapterView.OnItemClickListener onThemeChooseListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+            mainPresenter.onThemeChooseItemClick(position);
+        }
+    };
+
+
+    private SublimePickerFragment.Callback mFragmentCallback = new SublimePickerFragment.Callback() {
+        @Override
+        public void onCancelled() {
+
+        }
+
+        @Override
+        public void onDateTimeRecurrenceSet(SelectedDate selectedDate, int hourOfDay, int minute, SublimeRecurrencePicker.RecurrenceOption recurrenceOption, String recurrenceRule) {
+
+        }
+    };
 
 }

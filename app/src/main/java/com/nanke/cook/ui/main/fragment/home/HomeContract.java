@@ -54,11 +54,12 @@ public class HomeContract {
 
         void getWeatherToday(String cityname);
 
-        NavigationView.OnNavigationItemSelectedListener getNavigationItemSelectedListener();
+        boolean onNavigationItemSelected(MenuItem menuItem);
 
-        SublimePickerFragment.Callback getSublimePickerFragmentCallback();
+        void onThemeChooseItemClick(int position);
 
-        AdapterView.OnItemClickListener getThemeChooseItemListener();
+        void SublimePickerFragmentCallback();
+
     }
 
 

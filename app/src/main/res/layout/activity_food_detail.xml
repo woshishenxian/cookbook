@@ -82,7 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:clickable="true"
-        android:src="@mipmap/btn_collect"
+        android:src="@drawable/btn_collect"
         app:layout_anchor="@id/appbar"
         app:layout_anchorGravity="bottom|right|end" />
 
