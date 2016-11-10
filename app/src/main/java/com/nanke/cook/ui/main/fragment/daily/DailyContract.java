@@ -18,6 +18,11 @@ public class DailyContract {
 
         void loadFoods(List<Food> foods);
 
+        void turnToFoodsCollected();
+
+        void showShareDialog();
+
+
     }
 
     public interface Presenter extends BasePresenter{

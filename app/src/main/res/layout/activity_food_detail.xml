@@ -42,39 +42,33 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <com.nanke.cook.view.AutoSwipeRefreshLayout
-        android:id="@+id/swipeRefreshLayout"
+
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <android.support.v4.widget.NestedScrollView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:padding="@dimen/item_horizontal_margin">
 
-            <RelativeLayout
+
+            <TextView
+                android:id="@+id/messageText"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:padding="@dimen/item_horizontal_margin">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/bg_cardview"
+                android:padding="@dimen/item_horizontal_margin"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp" />
 
 
-                <TextView
-                    android:background="@drawable/bg_cardview"
-                    android:padding="@dimen/item_horizontal_margin"
-                    android:layout_marginTop="30dp"
-                    android:id="@+id/messageText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="14sp" />
+        </RelativeLayout>
 
-
-            </RelativeLayout>
-
-        </android.support.v4.widget.NestedScrollView>
-    </com.nanke.cook.view.AutoSwipeRefreshLayout>
+    </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/btn_collect"
@@ -85,6 +79,7 @@
         android:src="@drawable/btn_collect"
         app:layout_anchor="@id/appbar"
         app:layout_anchorGravity="bottom|right|end" />
+
 
 
 </android.support.design.widget.CoordinatorLayout>

@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/RedTheme" >
         <activity android:name=".ui.main.MainActivity"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait">
             <meta-data android:name="android.app.searchable"
                 android:value=".ui.detail.FoodDetailActivity" />
@@ -39,6 +40,8 @@
             </activity>
 
         <activity android:name=".ui.collect.FoodsCollectedActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.about.AboutActivity"
             android:screenOrientation="portrait"/>
 
 

@@ -3,6 +3,7 @@ package com.nanke.cook.ui.main;
 import android.app.Activity;
 import android.os.Bundle;
 
+import com.nanke.cook.BasePresenter;
 import com.nanke.cook.R;
 import com.nanke.cook.event.BusEvent;
 import com.nanke.cook.ui.BaseActivity;
@@ -37,17 +38,27 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        ButterKnife.inject(this);
-
 
         viewPager.setNoScroll(true);
 
         viewPager.setAdapter(new TabPagerAdapter(getSupportFragmentManager(),
                 initFragmentList()));
+        viewPager.setOffscreenPageLimit(0);
         indicator.setViewPager(viewPager);
-        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public int getLayoutView() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    public BasePresenter initPresenter() {
+        return null;
+    }
+
+    @Override
+    public void initToolbar() {
 
     }
 
@@ -59,19 +70,11 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN) //这种写法达到粘性的目的
-    public void onMainEvent(BusEvent event) {
-// UI updates must run on MainThread
-        if(event.getType() == BusEvent.TYPE_CHANGE_THEME){
-            reload(false);
-        }
-    }
 
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);
     }
 
     @Override

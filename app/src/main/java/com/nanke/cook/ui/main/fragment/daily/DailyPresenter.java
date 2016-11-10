@@ -49,9 +49,9 @@ public class DailyPresenter implements DailyContract.Presenter {
     @Override
     public boolean onPopupMenuClick(Context context, int id) {
         if(id == R.id.btn_collect_center){
-            context.startActivity(new Intent(context, FoodsCollectedActivity.class));
+            view.turnToFoodsCollected();
         }else if(id == R.id.btn_share){
-
+            view.showShareDialog();
         }
         return true;
     }

@@ -35,11 +35,13 @@ import com.nanke.cook.entity.Category;
 import com.nanke.cook.entity.weather.Realtime;
 import com.nanke.cook.event.BusEvent;
 import com.nanke.cook.ui.BaseActivity;
+import com.nanke.cook.ui.about.AboutActivity;
 import com.nanke.cook.ui.collect.FoodsCollectedActivity;
 import com.nanke.cook.ui.main.BackPressedInterface;
 import com.nanke.cook.ui.main.MainActivity;
 import com.nanke.cook.ui.main.adapter.ColorsListAdapter;
 import com.nanke.cook.ui.main.adapter.MainViewPageAdapter;
+import com.nanke.cook.ui.search.SearchResultsActivity;
 import com.nanke.cook.ui.weather.WeatherActivity;
 import com.nanke.cook.ui.weather.fragment.SublimePickerFragment;
 import com.nanke.cook.utils.DialogUtils;
@@ -101,25 +103,33 @@ public class HomeFragment extends BaseIconFragment implements HomeContract.View 
     @Override
     public void initToolbar() {
         toolbar.inflateMenu(R.menu.menu_main_more);
-        SearchManager searchManager =
-                (SearchManager) mActivity.getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(toolbar.getMenu().findItem(R.id.search));
-        searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(mActivity.getComponentName()));
-        searchView.setQueryHint(mActivity.getString(R.string.search_hint));
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
-            public boolean onQueryTextSubmit(String s) {
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-//                recyclerAdapter.getFilter().filter(s);
-                return true;
+            public boolean onMenuItemClick(MenuItem item) {
+                return false;
             }
         });
+
+//        SearchManager searchManager =
+//                (SearchManager) mActivity.getSystemService(Context.SEARCH_SERVICE);
+//        SearchView searchView = (SearchView) MenuItemCompat.getActionView(toolbar.getMenu().findItem(R.id.search));
+//        searchView.setSearchableInfo(
+//                searchManager.getSearchableInfo(mActivity.getComponentName()));
+//        searchView.setQueryHint(mActivity.getString(R.string.search_hint));
+//
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String s) {
+//                return true;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String s) {
+////                recyclerAdapter.getFilter().filter(s);
+//                return true;
+//            }
+//        });
     }
 
     @Override
@@ -192,7 +202,7 @@ public class HomeFragment extends BaseIconFragment implements HomeContract.View 
         if (value != position) {
             PreferenceUtils.getInstance(getActivity()).saveParam(getString(R.string.change_theme_key), position);
         }
-        EventBus.getDefault().postSticky(new BusEvent(BusEvent.TYPE_CHANGE_THEME));
+        EventBus.getDefault().post(new BusEvent(BusEvent.TYPE_CHANGE_THEME));
     }
 
     @Override
@@ -222,12 +232,18 @@ public class HomeFragment extends BaseIconFragment implements HomeContract.View 
 
     @Override
     public void turnToAbout() {
-
+        startActivity(new Intent(getActivity(), AboutActivity.class));
     }
 
     @Override
     public void turnToWeather() {
         startActivity(new Intent(getActivity(), WeatherActivity.class));
+    }
+
+
+    @Override
+    public void turnToSearch() {
+        startActivity(new Intent(getContext(), SearchResultsActivity.class));
     }
 
     @Override

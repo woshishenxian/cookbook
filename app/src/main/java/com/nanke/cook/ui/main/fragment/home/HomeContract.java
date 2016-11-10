@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 
@@ -47,6 +48,8 @@ public class HomeContract {
         void saveAndNotifyThemeChange(int position);
 
         void turnToWeather();
+
+        void turnToSearch();
     }
 
     public interface Presenter extends BasePresenter{
@@ -60,6 +63,7 @@ public class HomeContract {
 
         void SublimePickerFragmentCallback();
 
+        void onMenuItemClick(MenuItem menuItem);
     }
 
 

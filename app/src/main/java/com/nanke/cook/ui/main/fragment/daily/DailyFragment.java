@@ -1,6 +1,8 @@
 package com.nanke.cook.ui.main.fragment.daily;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.PopupMenu;
@@ -17,7 +19,9 @@ import android.widget.TextView;
 import com.nanke.cook.R;
 import com.nanke.cook.entity.Food;
 import com.nanke.cook.ui.BaseActivity;
+import com.nanke.cook.ui.collect.FoodsCollectedActivity;
 import com.nanke.cook.ui.main.adapter.DailyAdapter;
+import com.nanke.cook.view.ShareBottomDialog;
 import com.nanke.cook.view.indicator.BaseIconFragment;
 import com.nanke.cook.view.swipefling.SwipeFlingAdapterView;
 
@@ -46,13 +50,12 @@ public class DailyFragment extends BaseIconFragment implements DailyContract.Vie
     @InjectView(R.id.flingContainer)
     SwipeFlingAdapterView flingContainer;
 
-    @InjectView(R.id.loadingView)
-    LoadingView loadingView;
-
     private DailyAdapter dailyAdapter;
     private DailyPresenter dailyPresenter;
 
     private List<Food> oldfoods;
+
+    private ProgressDialog progressDialog;
 
 
     @Override
@@ -104,15 +107,34 @@ public class DailyFragment extends BaseIconFragment implements DailyContract.Vie
         theme.setText(dailyPresenter.getCurTheme());
     }
 
+    @Override
+    public void turnToFoodsCollected() {
+        startActivity(new Intent(getActivity(), FoodsCollectedActivity.class));
+    }
+
+    @Override
+    public void showShareDialog() {
+        ShareBottomDialog shareBottomDialog = new ShareBottomDialog(getContext());
+        shareBottomDialog.show();
+    }
 
     @Override
     public void showLoading() {
-        loadingView.setVisibility(View.VISIBLE);
+        if(progressDialog == null){
+            progressDialog = new ProgressDialog(getContext());
+            progressDialog.setMessage("努力加载中...");
+            progressDialog.setCanceledOnTouchOutside(false);
+        }
+        if(!progressDialog.isShowing()){
+            progressDialog.show();
+        }
     }
 
     @Override
     public void hideLoading() {
-        loadingView.setVisibility(View.GONE);
+        if(progressDialog!=null && progressDialog.isShowing()){
+            progressDialog.dismiss();
+        }
     }
 
     @Override

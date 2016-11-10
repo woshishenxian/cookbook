@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.nanke.cook.BasePresenter;
 import com.nanke.cook.R;
 import com.nanke.cook.entity.weather.Data;
 import com.nanke.cook.entity.weather.Realtime;
@@ -22,7 +23,7 @@ import butterknife.InjectView;
  * Created by vince on 16/11/7.
  */
 
-public class WeatherActivity extends BaseActivity implements WeatherContract.View, SwipeRefreshLayout.OnRefreshListener {
+public class WeatherActivity extends BaseActivity<WeatherPresenter> implements WeatherContract.View, SwipeRefreshLayout.OnRefreshListener {
 
     @InjectView(R.id.toolbar)
     Toolbar toolbar;
@@ -43,9 +44,6 @@ public class WeatherActivity extends BaseActivity implements WeatherContract.Vie
     @InjectView(R.id.fixedListView)
     FixedListView fixedListView;
 
-
-    private WeatherPresenter presenter;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,11 +57,21 @@ public class WeatherActivity extends BaseActivity implements WeatherContract.Vie
 
         initToolbar();
         onRefresh();
+
     }
 
+    @Override
+    public int getLayoutView() {
+        return 0;
+    }
 
-    private void initToolbar() {
+    @Override
+    public WeatherPresenter initPresenter() {
+        return null;
+    }
 
+    @Override
+    public void initToolbar() {
         toolbar.inflateMenu(R.menu.menu_daily_more);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -73,7 +81,6 @@ public class WeatherActivity extends BaseActivity implements WeatherContract.Vie
             }
         });
     }
-
 
     @Override
     public void onRefresh() {

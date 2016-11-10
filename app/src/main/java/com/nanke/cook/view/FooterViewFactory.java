@@ -44,6 +44,9 @@ public class FooterViewFactory implements View.OnClickListener{
         return view;
     }
 
+    public boolean isRefreshing() {
+        return isRefreshing;
+    }
 
     @Override
     public void onClick(View v) {

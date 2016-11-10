@@ -74,6 +74,13 @@ public class HomePresenter implements HomeContract.Presenter {
     }
 
     @Override
+    public void onMenuItemClick(MenuItem menuItem) {
+        if(menuItem.getItemId() == R.id.search){
+            view.turnToSearch();
+        }
+    }
+
+    @Override
     public void SublimePickerFragmentCallback() {
 
     }

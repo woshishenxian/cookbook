@@ -31,7 +31,7 @@ import butterknife.InjectView;
  * Created by vince on 16/10/27.
  */
 
-public class FoodsCollectedActivity extends BaseActivity implements FoodsCollectedContract.View ,
+public class FoodsCollectedActivity extends BaseActivity<FoodsCollectedPresenter> implements FoodsCollectedContract.View ,
         SwipeRefreshLayout.OnRefreshListener ,FooterViewFactory.OnMoreRefreshListener {
 
 
@@ -48,7 +48,6 @@ public class FoodsCollectedActivity extends BaseActivity implements FoodsCollect
 
     private FoodsRecyclerViewAdapter foodsAdapter;
 
-    private FoodsCollectedPresenter foodCollectedPresenter;
     private int page = 1;
     private List<Food> foods;
 
@@ -56,19 +55,24 @@ public class FoodsCollectedActivity extends BaseActivity implements FoodsCollect
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_foods_collected);
-
-        ButterKnife.inject(this);
-
-        initToolbar();
         initView();
 
-        foodCollectedPresenter = new FoodsCollectedPresenter(this);
         swipeRefreshLayout.setOnRefreshListener(this);
         onRefresh();
     }
 
-    private void initToolbar(){
+    @Override
+    public int getLayoutView() {
+        return R.layout.activity_foods_collected;
+    }
+
+    @Override
+    public FoodsCollectedPresenter initPresenter() {
+        return new FoodsCollectedPresenter(this);
+    }
+
+    @Override
+    public void initToolbar(){
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +83,7 @@ public class FoodsCollectedActivity extends BaseActivity implements FoodsCollect
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                return foodCollectedPresenter.onMenuItemClick(FoodsCollectedActivity.this,item.getItemId());
+                return presenter.onMenuItemClick(FoodsCollectedActivity.this,item.getItemId());
             }
         });
     }
@@ -95,7 +99,7 @@ public class FoodsCollectedActivity extends BaseActivity implements FoodsCollect
             public void OnClickListener(View parentV, View v, Integer position, Food values) {
                 super.OnClickListener(parentV, v, position, values);
                 //添加跳转
-                foodCollectedPresenter.onRecyclerViewItemClick(FoodsCollectedActivity.this
+                presenter.onRecyclerViewItemClick(FoodsCollectedActivity.this
                         , values);
             }
         });
@@ -105,7 +109,7 @@ public class FoodsCollectedActivity extends BaseActivity implements FoodsCollect
             public void OnClickListener(View parentV, View v, Integer position, Food values) {
                 super.OnClickListener(parentV, v, position, values);
                 //更多菜单
-                foodCollectedPresenter.showPopMenu(v, position, values);
+                presenter.showPopMenu(v, position, values);
             }
         });
 
@@ -118,13 +122,13 @@ public class FoodsCollectedActivity extends BaseActivity implements FoodsCollect
     @Override
     public void onRefresh() {
         page = 1;
-        foodCollectedPresenter.getCollectedFoods(page);
+        presenter.getCollectedFoods(page);
     }
 
     @Override
     public void onLoad() {
         page ++;
-        foodCollectedPresenter.getCollectedFoods(page);
+        presenter.getCollectedFoods(page);
     }
 
     @Override
@@ -150,7 +154,7 @@ public class FoodsCollectedActivity extends BaseActivity implements FoodsCollect
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                return foodCollectedPresenter.onPopupMenuClick(FoodsCollectedActivity.this,item.getItemId(),food);
+                return presenter.onPopupMenuClick(FoodsCollectedActivity.this,item.getItemId(),food);
             }
         });
         popup.setGravity(Gravity.RIGHT);

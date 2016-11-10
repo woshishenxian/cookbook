@@ -168,10 +168,11 @@ public class FoodsFragment extends Fragment implements FoodsContract.View, Foote
 
     @Override
     public void hideLoading() {
-        if (swipeRefreshLayout.isRefreshing()) {
-            swipeRefreshLayout.stopRefreshing();
-        } else {
+        if(footerViewFactory.isRefreshing()){
             footerViewFactory.setRefreshing(false);
+        }
+        if(swipeRefreshLayout.isRefreshing()){
+            swipeRefreshLayout.stopRefreshing();
         }
     }
 

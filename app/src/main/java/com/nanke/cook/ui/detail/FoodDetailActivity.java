@@ -1,5 +1,6 @@
 package com.nanke.cook.ui.detail;
 
+import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.nanke.cook.R;
@@ -18,6 +20,7 @@ import com.nanke.cook.ui.BaseActivity;
 import com.nanke.cook.view.AutoSwipeRefreshLayout;
 import com.squareup.picasso.Picasso;
 
+import app.dinus.com.loadingdrawable.LoadingView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -26,13 +29,10 @@ import butterknife.OnClick;
  * Created by vince on 16/10/26.
  */
 
-public class FoodDetailActivity extends BaseActivity implements FoodDetailContract.View , SwipeRefreshLayout.OnRefreshListener {
+public class FoodDetailActivity extends BaseActivity<FoodDetailPresenter> implements FoodDetailContract.View , SwipeRefreshLayout.OnRefreshListener {
 
     @InjectView(R.id.toolbar)
     Toolbar toolbar;
-
-    @InjectView(R.id.swipeRefreshLayout)
-    AutoSwipeRefreshLayout swipeRefreshLayout;
 
     @InjectView(R.id.backdrop)
     ImageView backdrop;
@@ -45,36 +45,39 @@ public class FoodDetailActivity extends BaseActivity implements FoodDetailContra
     @InjectView(R.id.btn_collect)
     FloatingActionButton btn_collect;
 
-    private FoodDetailPresenter foodDetailPresenter;
 
     private Food food; //当前食品
+
+    private ProgressDialog progressDialog;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_food_detail);
 
-        ButterKnife.inject(this);
-
-
-        foodDetailPresenter = new FoodDetailPresenter(this);
-        initToolbar();
-
-        swipeRefreshLayout.setOnRefreshListener(this);
         onRefresh();
 
+    }
+
+    @Override
+    public int getLayoutView() {
+        return R.layout.activity_food_detail;
+    }
+
+    @Override
+    public FoodDetailPresenter initPresenter() {
+        return new FoodDetailPresenter(this);
     }
 
     @OnClick(R.id.btn_collect)
     public void onFabClick() {
         if (food != null){
-            foodDetailPresenter.collectFood(food);
+            presenter.collectFood(food);
         }
     }
 
-
-    private void initToolbar(){
+    @Override
+    public void initToolbar(){
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,7 +88,7 @@ public class FoodDetailActivity extends BaseActivity implements FoodDetailContra
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                foodDetailPresenter.onMenuItemClick(FoodDetailActivity.this,item.getItemId(),food);
+                presenter.onMenuItemClick(FoodDetailActivity.this,item.getItemId(),food);
                 return false;
             }
         });
@@ -96,9 +99,9 @@ public class FoodDetailActivity extends BaseActivity implements FoodDetailContra
     public void onRefresh() {
         String name = getIntent().getStringExtra(SearchManager.QUERY);
         if(name !=null){
-            foodDetailPresenter.getFoodByName(name);
+            presenter.getFoodByName(name);
         }else{
-            foodDetailPresenter.getFoodById(getIntent().getIntExtra("ID", 1));
+            presenter.getFoodById(getIntent().getIntExtra("ID", 1));
         }
 
     }
@@ -122,11 +125,21 @@ public class FoodDetailActivity extends BaseActivity implements FoodDetailContra
 
     @Override
     public void showLoading() {
-        swipeRefreshLayout.startRefreshing();
+        if(progressDialog == null){
+            progressDialog = new ProgressDialog(this);
+            progressDialog.setMessage("努力加载中...");
+            progressDialog.setCanceledOnTouchOutside(false);
+        }
+        if(!progressDialog.isShowing()){
+            progressDialog.show();
+        }
+
     }
 
     @Override
     public void hideLoading() {
-        swipeRefreshLayout.stopRefreshing();
+        if(progressDialog!=null && progressDialog.isShowing()){
+            progressDialog.dismiss();
+        }
     }
 }

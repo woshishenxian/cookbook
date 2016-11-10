@@ -25,4 +25,9 @@
     <string name="change_theme_key">change_theme_key</string>
     <string name="change_theme">更换主题</string>
 
+    <string name="blog">简书博客</string>
+    <string name="project_home">项目主页</string>
+
+    <string name="about_bottom_text">Copyright © 2015 nanke.\nAll Rights Reserved.</string>
+
 </resources>
