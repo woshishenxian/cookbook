@@ -132,7 +132,7 @@ public class HomePresenter implements HomeContract.Presenter {
         }
     };
 
-    public AdapterView.OnItemClickListener onThemeChoose = new AdapterView.OnItemClickListener() {
+    private AdapterView.OnItemClickListener onThemeChoose = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
             view.saveAndNotifyThemeChange(position);
@@ -140,7 +140,7 @@ public class HomePresenter implements HomeContract.Presenter {
     };
 
 
-    SublimePickerFragment.Callback mFragmentCallback = new SublimePickerFragment.Callback() {
+    private SublimePickerFragment.Callback mFragmentCallback = new SublimePickerFragment.Callback() {
         @Override
         public void onCancelled() {
 

@@ -144,7 +144,7 @@ public class HomeFragment extends BaseIconFragment implements HomeContract.View 
         cityNameView = (TextView) headerView.findViewById(R.id.cityNameView);
 
         //监听各个菜单
-        navi.setNavigationItemSelectedListener(mainPresenter.getNavigationItemSelectedListener());
+//        navi.setNavigationItemSelectedListener(mainPresenter.getNavigationItemSelectedListener());
     }
 
 
