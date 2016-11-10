@@ -99,7 +99,7 @@ public class DailyAdapter extends BaseAdapter {
             this.portraitView = (ImageView) convertView.findViewById(R.id.portrait);
             this.titleView = (TextView) convertView.findViewById(R.id.title);
             this.favorite = (TextView) convertView.findViewById(R.id.favorite);
-
+            favorite.setBackgroundResource(R.drawable.bg_btn_favorite);
             favorite.setOnClickListener(this);
         }
 
