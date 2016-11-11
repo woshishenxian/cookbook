@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.nanke.cook.R;
@@ -46,31 +47,30 @@ public class WeatherActivity extends BaseActivity<WeatherPresenter> implements W
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_weather);
 
-        ButterKnife.inject(this);
-
-
-        presenter = new WeatherPresenter(this);
         swipeRefreshLayout.setOnRefreshListener(this);
-
-        initToolbar();
         onRefresh();
 
     }
 
     @Override
     public int getLayoutView() {
-        return 0;
+        return R.layout.activity_weather;
     }
 
     @Override
     public WeatherPresenter initPresenter() {
-        return null;
+        return new WeatherPresenter(this);
     }
 
     @Override
     public void initToolbar() {
+        toolbar.setNavigationOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         toolbar.inflateMenu(R.menu.menu_daily_more);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
