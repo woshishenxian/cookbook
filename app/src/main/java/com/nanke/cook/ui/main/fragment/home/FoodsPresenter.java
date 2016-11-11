@@ -49,7 +49,7 @@ public class FoodsPresenter implements FoodsContract.Presenter, ArrCallBack<Food
 
     @Override
     public void onDataNotAvailable(String msg) {
-        view.onError(msg);
+        view.onMessage(msg);
     }
 
 
@@ -63,9 +63,9 @@ public class FoodsPresenter implements FoodsContract.Presenter, ArrCallBack<Food
         if(id == R.id.collect){
             food.setIsCollected(true);
             foodsDataRepository.collectFood(food);
-            view.onError("收藏成功");
+            view.onMessage("收藏成功");
         }else if(id == R.id.relate) {
-            view.onError("跳转到食谱列表");
+            view.onMessage("跳转到食谱列表");
         }
         return true;
     }

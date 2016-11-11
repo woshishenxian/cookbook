@@ -11,11 +11,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.flyco.animation.BounceEnter.BounceTopEnter;
-import com.nanke.cook.BasePresenter;
+import com.nanke.cook.base.BasePresenter;
 import com.nanke.cook.BuildConfig;
 import com.nanke.cook.R;
 import com.nanke.cook.ui.BaseActivity;
-import com.nanke.cook.ui.collect.FoodsCollectedActivity;
 import com.nanke.cook.view.ShareBottomDialog;
 
 import butterknife.InjectView;

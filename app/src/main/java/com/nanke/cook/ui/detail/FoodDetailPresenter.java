@@ -36,7 +36,7 @@ public class FoodDetailPresenter implements FoodDetailContract.Presenter, ObjCal
 
     @Override
     public void onDataNotAvailable(String msg) {
-        view.onError(msg);
+        view.onMessage(msg);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class FoodDetailPresenter implements FoodDetailContract.Presenter, ObjCal
     @Override
     public void collectFood(Food food) {
         repository.collectFood(food);
-        view.onError("收藏成功");
+        view.onMessage("收藏成功");
     }
 
     @Override
@@ -60,7 +60,7 @@ public class FoodDetailPresenter implements FoodDetailContract.Presenter, ObjCal
         if (id == R.id.collect) {
             context.startActivity(new Intent(context, FoodsCollectedActivity.class));
         } else if (id == R.id.relate) {
-            view.onError("跳转到食谱列表");
+            view.onMessage("跳转到食谱列表");
         }
         return true;
     }

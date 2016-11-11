@@ -26,16 +26,12 @@ import java.util.List;
 public class HomePresenter implements HomeContract.Presenter {
 
     FoodsDataRepository foodsDataRepository;
-    WeatherDataRepository weatherDataRepository;
     HomeContract.View view;
 
     public HomePresenter(HomeContract.View view) {
         this.foodsDataRepository = new FoodsDataRepository();
-        this.weatherDataRepository = new WeatherDataRepository();
         this.view = view;
         this.view.initToolbar();
-        this.view.initDrawerLayout();
-        this.view.initNavigationView();
     }
 
     @Override
@@ -45,45 +41,12 @@ public class HomePresenter implements HomeContract.Presenter {
 
 
     @Override
-    public void getWeatherToday(String cityName) {
-        weatherDataRepository.getWeather(cityName, weatherObjCallBack);
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(MenuItem menuItem) {
-        switch (menuItem.getItemId()) {
-            case R.id.btn_calendar:
-                view.showCalendar();
-                break;
-            case R.id.btn_collect_center:
-                view.turnToFoodsCollected();
-                break;
-            case R.id.btn_theme:
-                view.showThemeChooseDialog();
-                break;
-            case R.id.btn_about:
-                view.turnToAbout();
-                break;
-        }
-        return true;
-    }
-
-    @Override
-    public void onThemeChooseItemClick(int position) {
-            view.saveAndNotifyThemeChange(position);
-    }
-
-    @Override
     public void onMenuItemClick(MenuItem menuItem) {
         if(menuItem.getItemId() == R.id.search){
             view.turnToSearch();
         }
     }
 
-    @Override
-    public void SublimePickerFragmentCallback() {
-
-    }
 
     //分类数据回调
     private ArrCallBack<Category> categoryArrCallBack = new ArrCallBack<Category>() {
@@ -99,37 +62,15 @@ public class HomePresenter implements HomeContract.Presenter {
 
         @Override
         public void start() {
-            view.showLoading();
+
         }
 
         @Override
         public void onComplete() {
-            view.hideLoading();
+
         }
     };
 
-    //天气数据回调
-    private ObjCallBack<Realtime> weatherObjCallBack = new ObjCallBack<Realtime>() {
-        @Override
-        public void onTasksLoaded(Realtime tasks) {
-            view.loadWeatherToday(tasks);
-        }
-
-        @Override
-        public void onDataNotAvailable(String msg) {
-            view.onError(msg);
-        }
-
-        @Override
-        public void start() {
-            view.showLoading();
-        }
-
-        @Override
-        public void onComplete() {
-            view.hideLoading();
-        }
-    };
 
 
 }

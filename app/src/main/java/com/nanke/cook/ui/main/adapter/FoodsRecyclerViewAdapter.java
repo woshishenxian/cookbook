@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.nanke.cook.BaseRecyclerViewAdapter;
+import com.nanke.cook.base.BaseRecyclerViewAdapter;
 import com.nanke.cook.R;
 import com.nanke.cook.entity.Food;
 import com.squareup.picasso.Picasso;

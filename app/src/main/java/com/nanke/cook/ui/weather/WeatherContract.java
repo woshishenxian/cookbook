@@ -2,12 +2,10 @@ package com.nanke.cook.ui.weather;
 
 import android.content.Context;
 
-import com.nanke.cook.BasePresenter;
-import com.nanke.cook.BaseView;
+import com.nanke.cook.base.BasePresenter;
+import com.nanke.cook.base.BaseView;
+import com.nanke.cook.base.impl.BaseViewImpl;
 import com.nanke.cook.entity.weather.Data;
-import com.nanke.cook.entity.weather.Realtime;
-import com.nanke.cook.entity.weather.WeatherData;
-import com.nanke.cook.ui.BaseActivity;
 
 /**
  * Created by vince on 16/11/3.
@@ -15,7 +13,7 @@ import com.nanke.cook.ui.BaseActivity;
 
 public class WeatherContract {
 
-    public interface View extends BaseView{
+    public interface View extends BaseViewImpl {
         public void loadWeahter(Data data);
     }
 

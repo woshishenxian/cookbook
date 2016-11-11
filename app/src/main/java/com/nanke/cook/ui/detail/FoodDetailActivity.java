@@ -119,7 +119,7 @@ public class FoodDetailActivity extends BaseActivity<FoodDetailPresenter> implem
     }
 
     @Override
-    public void onError(String msg) {
+    public void onMessage(String msg) {
         toast(msg);
     }
 

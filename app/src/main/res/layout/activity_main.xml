@@ -1,25 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.nanke.cook.view.indicator.BaseViewPager
-        android:id="@+id/viewpager"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" >
-    </com.nanke.cook.view.indicator.BaseViewPager>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/cutLine" />
+        <com.nanke.cook.view.indicator.BaseViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
 
-    <com.nanke.cook.view.indicator.IconTabPageIndicator
-        android:id="@+id/indicator"
-        android:layout_width="match_parent"
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/cutLine" />
+
+
+        <com.nanke.cook.view.indicator.IconTabPageIndicator
+            android:id="@+id/indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize" />
+
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btn_fb"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"/>
+        android:clickable="true"
+        android:src="@drawable/center"
+        app:elevation="3dp"
+        app:fabSize="mini"
+        app:layout_anchor="@id/indicator"
+        app:layout_anchorGravity="center_horizontal"
+        app:pressedTranslationZ="6dp" />
 
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

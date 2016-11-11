@@ -2,8 +2,9 @@ package com.nanke.cook.ui.collect;
 
 import android.content.Context;
 
-import com.nanke.cook.BasePresenter;
-import com.nanke.cook.BaseView;
+import com.nanke.cook.base.BasePresenter;
+import com.nanke.cook.base.BaseView;
+import com.nanke.cook.base.impl.BaseViewImpl;
 import com.nanke.cook.entity.Food;
 
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
  */
 public class FoodsCollectedContract {
 
-    public interface View extends BaseView {
+    public interface View extends BaseViewImpl {
 
         void loadCollectedFoods(List<Food> foods);
 

@@ -138,7 +138,7 @@ public class DailyFragment extends BaseIconFragment implements DailyContract.Vie
     }
 
     @Override
-    public void onError(String msg) {
+    public void onMessage(String msg) {
         activity.toast(msg);
     }
 

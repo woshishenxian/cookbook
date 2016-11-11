@@ -15,4 +15,6 @@
     <dimen name="md_simplelist_icon_margin">18dp</dimen>
 
     <dimen name="md_dialog_frame_margin">24dp</dimen>
+
+    <dimen name="fb_margin">0dp</dimen>
 </resources>

@@ -1,14 +1,11 @@
 package com.nanke.cook.ui;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
-import com.nanke.cook.BasePresenter;
+import com.nanke.cook.base.BasePresenter;
 import com.nanke.cook.event.BusEvent;
 import com.nanke.cook.utils.SnackbarUtils;
 import com.nanke.cook.utils.ThemeUtils;
@@ -23,9 +20,9 @@ import butterknife.ButterKnife;
  * Created by vince on 16/10/25.
  */
 
-public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity {
+public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity {
 
-    protected T presenter;
+    protected P presenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,8 +31,9 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         setContentView(getLayoutView());
         ButterKnife.inject(this);
         EventBus.getDefault().register(this);
-        presenter = initPresenter();
         initToolbar();
+        presenter = initPresenter();
+
     }
 
 
@@ -55,7 +53,6 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
             overridePendingTransition(0, 0);
         }
         startActivity(intent);
-        recreate();
 
     }
 
@@ -78,7 +75,11 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         ThemeUtils.changeTheme(this, theme);
     }
 
-    public abstract int getLayoutView();
-    public abstract T initPresenter();
-    public abstract void initToolbar();
+    protected void initToolbar(){
+
+    }
+
+    protected abstract int getLayoutView();
+    protected abstract P initPresenter();
+
 }

@@ -1,4 +1,4 @@
-package com.nanke.cook;
+package com.nanke.cook.base;
 
 /**
  * Created by vince on 16/10/25.

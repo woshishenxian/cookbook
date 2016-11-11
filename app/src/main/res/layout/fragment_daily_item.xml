@@ -54,7 +54,7 @@
                 android:layout_below="@id/title"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
-                android:background="?attr/colorPrimary"
+                android:background="@drawable/bg_btn_favorite"
                 android:drawableLeft="@drawable/btn_collect"
                 android:drawablePadding="10dp"
                 android:paddingBottom="10dp"

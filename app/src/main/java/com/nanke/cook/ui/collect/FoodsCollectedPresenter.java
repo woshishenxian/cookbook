@@ -59,13 +59,13 @@ public class FoodsCollectedPresenter implements FoodsCollectedContract.Presenter
         if(id == R.id.collect){
             food.setIsCollected(true);
             foodsDataRepository.collectFood(food);
-            view.onError("收藏成功");
+            view.onMessage("收藏成功");
         }else if(id == R.id.relate) {
-            view.onError("跳转到食谱列表");
+            view.onMessage("跳转到食谱列表");
         }else if(id == R.id.collect_cancel){
             food.setIsCollected(false);
             foodsDataRepository.delCollectedFood(food);
-            view.onError("取消收藏");
+            view.onMessage("取消收藏");
         }
         return true;
     }

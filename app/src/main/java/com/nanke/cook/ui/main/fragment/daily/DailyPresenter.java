@@ -66,7 +66,7 @@ public class DailyPresenter implements DailyContract.Presenter {
     @Override
     public void onCollectItemClick(Food food) {
         foodsDataRepository.collectFood(food);
-        view.onError("收藏成功");
+        view.onMessage("收藏成功");
     }
 
     private ArrCallBack<Food> DailyFoodsCallBack = new ArrCallBack<Food>() {
@@ -77,7 +77,7 @@ public class DailyPresenter implements DailyContract.Presenter {
 
         @Override
         public void onDataNotAvailable(String msg) {
-            view.onError(msg);
+            view.onMessage(msg);
         }
 
         @Override
@@ -101,7 +101,7 @@ public class DailyPresenter implements DailyContract.Presenter {
 
         @Override
         public void onDataNotAvailable(String msg) {
-            view.onError(msg);
+            view.onMessage(msg);
         }
 
         @Override

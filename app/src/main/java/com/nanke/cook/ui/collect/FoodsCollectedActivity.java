@@ -12,11 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.kevin.wraprecyclerview.WrapRecyclerView;
-import com.nanke.cook.BaseRecyclerViewAdapter;
+import com.nanke.cook.base.BaseRecyclerViewAdapter;
 import com.nanke.cook.R;
 import com.nanke.cook.entity.Food;
 import com.nanke.cook.ui.BaseActivity;
-import com.nanke.cook.ui.detail.FoodDetailActivity;
 import com.nanke.cook.ui.main.adapter.FoodsRecyclerViewAdapter;
 import com.nanke.cook.view.AutoSwipeRefreshLayout;
 import com.nanke.cook.view.FooterViewFactory;
@@ -24,7 +23,6 @@ import com.nanke.cook.view.FooterViewFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 /**
@@ -178,7 +176,7 @@ public class FoodsCollectedActivity extends BaseActivity<FoodsCollectedPresenter
     }
 
     @Override
-    public void onError(String msg) {
+    public void onMessage(String msg) {
         toast(msg);
     }
 }

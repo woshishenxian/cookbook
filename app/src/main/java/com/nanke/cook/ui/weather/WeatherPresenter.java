@@ -42,7 +42,7 @@ public class WeatherPresenter implements WeatherContract.Presenter {
 
         @Override
         public void onDataNotAvailable(String msg) {
-            view.onError(msg);
+            view.onMessage(msg);
         }
 
         @Override

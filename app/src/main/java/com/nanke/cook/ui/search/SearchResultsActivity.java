@@ -3,7 +3,7 @@ package com.nanke.cook.ui.search;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.nanke.cook.BasePresenter;
+import com.nanke.cook.base.BasePresenter;
 import com.nanke.cook.R;
 import com.nanke.cook.ui.BaseActivity;
 

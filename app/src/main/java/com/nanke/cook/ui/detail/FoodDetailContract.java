@@ -2,8 +2,9 @@ package com.nanke.cook.ui.detail;
 
 import android.content.Context;
 
-import com.nanke.cook.BasePresenter;
-import com.nanke.cook.BaseView;
+import com.nanke.cook.base.BasePresenter;
+import com.nanke.cook.base.BaseView;
+import com.nanke.cook.base.impl.BaseViewImpl;
 import com.nanke.cook.entity.Food;
 
 /**
@@ -11,7 +12,7 @@ import com.nanke.cook.entity.Food;
  */
 public class FoodDetailContract {
 
-    public interface View extends BaseView {
+    public interface View extends BaseViewImpl {
 
         void loadFoodDetail(Food food);
 

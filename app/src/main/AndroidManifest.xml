@@ -10,7 +10,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/RedTheme" >
+        android:theme="@style/GreenTheme" >
         <activity android:name=".ui.main.MainActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait">

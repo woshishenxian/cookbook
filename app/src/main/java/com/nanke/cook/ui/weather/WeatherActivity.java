@@ -7,7 +7,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.nanke.cook.BasePresenter;
 import com.nanke.cook.R;
 import com.nanke.cook.entity.weather.Data;
 import com.nanke.cook.entity.weather.Realtime;
@@ -113,7 +112,7 @@ public class WeatherActivity extends BaseActivity<WeatherPresenter> implements W
     }
 
     @Override
-    public void onError(String msg) {
+    public void onMessage(String msg) {
         this.toast(msg);
     }
 

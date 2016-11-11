@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
@@ -16,7 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.kevin.wraprecyclerview.WrapRecyclerView;
-import com.nanke.cook.BaseRecyclerViewAdapter;
+import com.nanke.cook.base.BaseRecyclerViewAdapter;
 import com.nanke.cook.R;
 import com.nanke.cook.ui.BaseActivity;
 import com.nanke.cook.ui.main.adapter.FoodsRecyclerViewAdapter;
@@ -177,7 +176,7 @@ public class FoodsFragment extends Fragment implements FoodsContract.View, Foote
     }
 
     @Override
-    public void onError(String msg) {
+    public void onMessage(String msg) {
         mActivity.toast(msg);
     }
 }

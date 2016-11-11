@@ -7,6 +7,9 @@
         android:id="@+id/btn_calendar"
         android:title="@string/calendar" />
     <item
+        android:id="@+id/btn_theme"
+        android:title="@string/theme" />
+    <item
         android:id="@+id/btn_about"
         android:title="@string/about" />
 </menu>
