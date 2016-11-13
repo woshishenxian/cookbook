@@ -17,7 +17,9 @@
 
 <resources>
 
-    
+    <!-- ==================================================== -->
+    <!-- TabView  -->
+    <!-- ==================================================== -->
     <attr name="tabView" format="reference"/>
     <attr name="iconWidth" format="dimension"/>
     <attr name="iconHeight" format="dimension"/>
@@ -40,4 +42,6 @@
         <attr name="borderRadius" />
         <attr name="type" />
     </declare-styleable>
+
+
 </resources>

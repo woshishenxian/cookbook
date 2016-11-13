@@ -1,56 +1,53 @@
 package com.nanke.cook.ui.weather;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
-import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.nanke.cook.R;
 import com.nanke.cook.entity.weather.Data;
 import com.nanke.cook.entity.weather.Realtime;
 import com.nanke.cook.ui.BaseActivity;
-import com.nanke.cook.ui.weather.adapter.FutureAdapter;
-import com.nanke.cook.view.AutoSwipeRefreshLayout;
-import com.nanke.cook.view.FixedListView;
+import com.nanke.cook.ui.weather.adapter.RecyclerViewAdapter;
+import com.qiushui.blurredview.BlurredView;
 
-import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 /**
  * Created by vince on 16/11/7.
  */
 
-public class WeatherActivity extends BaseActivity<WeatherPresenter> implements WeatherContract.View, SwipeRefreshLayout.OnRefreshListener {
+public class WeatherActivity extends BaseActivity<WeatherPresenter> implements WeatherContract.View {
 
+
+    @InjectView(R.id.blurredView)
+    BlurredView blurredView;
+    @InjectView(R.id.city)
+    TextView city;
+    @InjectView(R.id.update_time)
+    TextView updateTime;
     @InjectView(R.id.toolbar)
     Toolbar toolbar;
-    @InjectView(R.id.swipeRefreshLayout)
-    AutoSwipeRefreshLayout swipeRefreshLayout;
-    @InjectView(R.id.cityname)
-    TextView cityname;
-    @InjectView(R.id.time)
-    TextView time;
-    @InjectView(R.id.wind)
-    TextView wind;
-    @InjectView(R.id.humidity)
-    TextView humidity;
-    @InjectView(R.id.temperature)
-    TextView temperature;
-    @InjectView(R.id.weather_img)
-    TextView weather_img;
-    @InjectView(R.id.fixedListView)
-    FixedListView fixedListView;
+    @InjectView(R.id.recycleView)
+    RecyclerView recycleView;
+
+
+
+    private int mScrollerY;
+
+    private int mAlpha;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        swipeRefreshLayout.setOnRefreshListener(this);
-        onRefresh();
-
+        presenter.getWeahter("北京");
     }
 
     @Override
@@ -65,50 +62,50 @@ public class WeatherActivity extends BaseActivity<WeatherPresenter> implements W
 
     @Override
     public void initToolbar() {
-        toolbar.setNavigationOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-        toolbar.inflateMenu(R.menu.menu_daily_more);
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                presenter.onMenuItemClick(WeatherActivity.this, item.getItemId());
-                return true;
-            }
-        });
+
     }
 
-    @Override
-    public void onRefresh() {
-        presenter.getWeahter("北京");
-    }
 
     @Override
     public void loadWeahter(Data data) {
         Realtime realtime = data.getRealtime();
-        time.setText("更新时间: " + realtime.getTime());
-        cityname.setText(realtime.getCity_name());
-        wind.setText("风力\n" + realtime.getWind().getDirect() + realtime.getWind().getPower());
-        temperature.setText(realtime.getWeather().getTemperature());
-        humidity.setText(realtime.getWeather().getHumidity());
+        city.setText(realtime.getCity_name());
+        updateTime.setText("更新时间："+realtime.getTime());
 
-        weather_img.setText(realtime.getWeather().getInfo());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recycleView.setLayoutManager(layoutManager);
 
-        fixedListView.setAdapter(new FutureAdapter(this, data.getWeather()));
+        recycleView.setAdapter(new RecyclerViewAdapter(this,data));
 
+        recycleView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                mScrollerY += dy;
+                if (Math.abs(mScrollerY) > 1000) {
+                    blurredView.setBlurredTop(100);
+                    mAlpha = 100;
+                } else {
+                    blurredView.setBlurredTop(mScrollerY / 10);
+                    mAlpha = Math.abs(mScrollerY) / 10;
+                }
+                blurredView.setBlurredLevel(mAlpha);
+            }
+        });
     }
 
     @Override
     public void showLoading() {
-        swipeRefreshLayout.startRefreshing();
+
     }
 
     @Override
     public void hideLoading() {
-        swipeRefreshLayout.stopRefreshing();
     }
 
     @Override

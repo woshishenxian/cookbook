@@ -1,141 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:stv="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
+    <com.qiushui.blurredview.BlurredView
+        android:id="@+id/blurredView"
+        app:src="@drawable/dayu"
+        app:move="true"
+        app:disableBlurred="false"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="0dp"
         android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        app:navigationIcon="@drawable/abc_ic_ab_back_mtrl_am_alpha"
+        android:background="@drawable/bg_bar_weather">
 
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:layout_collapseMode="pin"
-            app:navigationIcon="@drawable/abc_ic_ab_back_mtrl_am_alpha"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="8dp"
+            android:layout_gravity="center"
+            android:paddingTop="8dp">
 
             <TextView
-                android:id="@+id/cityname"
+                android:id="@+id/city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
                 android:layout_gravity="center"
-                android:text="@string/app_mine"
-                android:textColor="@color/colorBarTitle"
-                android:textSize="18sp"
-                android:textStyle="normal" />
-        </android.support.v7.widget.Toolbar>
+                android:text="ChongQin"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"/>
 
-    </android.support.design.widget.AppBarLayout>
+            <TextView
+                android:id="@+id/update_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="14:28 CST"
+                android:textColor="@android:color/white"
+                android:textSize="10sp"/>
+        </LinearLayout>
+    </android.support.v7.widget.Toolbar>
 
-    <com.nanke.cook.view.AutoSwipeRefreshLayout
-        android:id="@+id/swipeRefreshLayout"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycleView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_below="@id/toolbar"/>
 
-        <android.support.v4.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:orientation="vertical">
-
-                <com.nanke.cook.view.SquareLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="?attr/colorPrimary">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:alpha="0.1"
-                        android:src="@mipmap/background_china" />
-
-                    <TextView
-                        android:id="@+id/time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
-                        android:text="更新时间: 11:0:0"
-                        android:textColor="@android:color/white"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:id="@+id/weather_img"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:textColor="@android:color/white"
-                        android:textSize="80sp"
-                        android:alpha="0.7"
-                        android:text="霾"/>
-
-
-                    <TextView
-                        android:id="@+id/wind"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_margin="20dp"
-                        android:text="风力\n北风1级"
-                        android:textColor="@android:color/white"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/temperature"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="20dp"
-                        android:text="10°"
-                        android:textColor="@android:color/white"
-                        android:textSize="40sp" />
-
-                    <TextView
-                        android:id="@+id/humidity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_margin="20dp"
-                        android:text="湿度\n20%"
-                        android:textColor="@android:color/white"
-                        android:textSize="14sp" />
-
-
-                </com.nanke.cook.view.SquareLayout>
-
-
-                <com.nanke.cook.view.FixedListView
-                    android:id="@+id/fixedListView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:dividerHeight="1dp"
-                    android:divider="@android:color/white"/>
-
-            </LinearLayout>
-
-        </android.support.v4.widget.NestedScrollView>
-    </com.nanke.cook.view.AutoSwipeRefreshLayout>
-
-
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

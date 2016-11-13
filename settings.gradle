@@ -1,1 +1,1 @@
-include ':app', ':library', ':sublimepickerlibrary'
+include ':app', ':library', ':sublimepickerlibrary', ':blurredview'

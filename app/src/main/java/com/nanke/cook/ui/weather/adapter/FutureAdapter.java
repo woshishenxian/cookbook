@@ -1,13 +1,10 @@
 package com.nanke.cook.ui.weather.adapter;
 
 import android.content.Context;
-import android.database.DataSetObserver;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.BaseExpandableListAdapter;
-import android.widget.ExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -51,7 +48,7 @@ public class FutureAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
         if(convertView == null){
-            convertView = LayoutInflater.from(context).inflate(R.layout.fragment_weather_future_item,null);
+            convertView = LayoutInflater.from(context).inflate(R.layout.activity_weather_item,null);
             holder = new ViewHolder(convertView);
 
             convertView.setTag(holder);

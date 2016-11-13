@@ -29,7 +29,7 @@ public class Realtime_Weather {
     }
 
     public String getHumidity() {
-        return "湿度\n"+ humidity+"%";
+        return "湿度"+ humidity+"%";
     }
 
     public void setHumidity(String humidity) {
