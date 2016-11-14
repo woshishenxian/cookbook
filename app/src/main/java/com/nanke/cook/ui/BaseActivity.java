@@ -26,12 +26,13 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        initTheme();
+//        initTheme();
         super.onCreate(savedInstanceState);
         setContentView(getLayoutView());
         ButterKnife.inject(this);
         EventBus.getDefault().register(this);
         initToolbar();
+
         presenter = initPresenter();
 
     }

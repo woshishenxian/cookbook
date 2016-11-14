@@ -46,7 +46,7 @@ public class WeatherActivity extends BaseActivity<WeatherPresenter> implements W
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+//        setSupportActionBar(toolbar);
         presenter.getWeahter("北京");
     }
 

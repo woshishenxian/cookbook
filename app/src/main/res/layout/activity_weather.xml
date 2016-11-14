@@ -7,20 +7,25 @@
 
     <com.qiushui.blurredview.BlurredView
         android:id="@+id/blurredView"
-        app:src="@drawable/dayu"
-        app:move="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:disableBlurred="false"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        app:move="true"
+        app:src="@drawable/dayu" />
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:navigationIcon="@drawable/abc_ic_ab_back_mtrl_am_alpha"
-        android:background="@drawable/bg_bar_title">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/bg_bar_title"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:navigationIcon="@drawable/abc_ic_ab_back_mtrl_am_alpha">
 
             <TextView
                 android:id="@+id/city"
@@ -29,24 +34,25 @@
                 android:layout_gravity="center"
                 android:text="ChongQin"
                 android:textColor="@android:color/white"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
-    </android.support.v7.widget.Toolbar>
-    <TextView
-        android:id="@+id/update_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:gravity="center"
-        android:text="14:28 CST"
-        android:layout_below="@id/toolbar"
-        android:textColor="@android:color/white"
-        android:textSize="10sp"/>
+        </android.support.v7.widget.Toolbar>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycleView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/update_time"/>
+        <TextView
+            android:id="@+id/update_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="14:28 CST"
+            android:textColor="@android:color/white"
+            android:textSize="10sp" />
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycleView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/update_time" />
+    </RelativeLayout>
 </RelativeLayout>

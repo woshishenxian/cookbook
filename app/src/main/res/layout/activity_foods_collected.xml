@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_content"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:navigationIcon="@drawable/abc_ic_ab_back_mtrl_am_alpha"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:navigationIcon="@drawable/abc_ic_ab_back_mtrl_am_alpha"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
             <TextView
@@ -28,14 +26,13 @@
                 android:textSize="18sp"
                 android:textStyle="normal" />
         </android.support.v7.widget.Toolbar>
-    </android.support.design.widget.AppBarLayout>
 
 
     <com.nanke.cook.view.AutoSwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
+        android:layout_below="@id/toolbar"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:background="@android:color/white">
 
         <com.kevin.wraprecyclerview.WrapRecyclerView
@@ -45,4 +42,4 @@
             android:padding="4dp" />
 
     </com.nanke.cook.view.AutoSwipeRefreshLayout>
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>
