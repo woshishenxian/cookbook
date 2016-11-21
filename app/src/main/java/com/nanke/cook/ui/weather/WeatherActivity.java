@@ -1,21 +1,23 @@
 package com.nanke.cook.ui.weather;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.nanke.cook.R;
-import com.nanke.cook.entity.weather.Data;
-import com.nanke.cook.entity.weather.Realtime;
+import com.nanke.cook.base.BasePresenter;
 import com.nanke.cook.ui.BaseActivity;
-import com.nanke.cook.ui.weather.adapter.RecyclerViewAdapter;
-import com.qiushui.blurredview.BlurredView;
+
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.InjectView;
 
@@ -23,31 +25,37 @@ import butterknife.InjectView;
  * Created by vince on 16/11/7.
  */
 
-public class WeatherActivity extends BaseActivity<WeatherPresenter> implements WeatherContract.View {
+public class WeatherActivity extends BaseActivity<WeatherPresenter> implements WeatherContract.View{
 
 
-    @InjectView(R.id.blurredView)
-    BlurredView blurredView;
-    @InjectView(R.id.city)
-    TextView city;
-    @InjectView(R.id.update_time)
-    TextView updateTime;
     @InjectView(R.id.toolbar)
     Toolbar toolbar;
-    @InjectView(R.id.recycleView)
-    RecyclerView recycleView;
 
+    @InjectView(R.id.webView)
+    WebView webView;
 
+    @InjectView(R.id.prgressBar)
+    ProgressBar progressBar;
 
-    private int mScrollerY;
+    Map<String,String> map = new HashMap<>();
 
-    private int mAlpha;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setSupportActionBar(toolbar);
-        presenter.getWeahter("北京");
+
+
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setWebChromeClient(new ProgressWebChromeClient(progressBar));
+        webView.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return true;
+            }
+        });
+
+        progressBar.setProgress(20);
+        presenter.getWeather(this,"青岛");
     }
 
     @Override
@@ -62,41 +70,17 @@ public class WeatherActivity extends BaseActivity<WeatherPresenter> implements W
 
     @Override
     public void initToolbar() {
-
-    }
-
-
-    @Override
-    public void loadWeahter(Data data) {
-        Realtime realtime = data.getRealtime();
-        city.setText(realtime.getCity_name());
-        updateTime.setText("更新时间："+realtime.getTime());
-
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        recycleView.setLayoutManager(layoutManager);
-
-        recycleView.setAdapter(new RecyclerViewAdapter(this,data));
-
-        recycleView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                mScrollerY += dy;
-                if (Math.abs(mScrollerY) > 1000) {
-                    blurredView.setBlurredTop(100);
-                    mAlpha = 100;
-                } else {
-                    blurredView.setBlurredTop(mScrollerY / 10);
-                    mAlpha = Math.abs(mScrollerY) / 10;
-                }
-                blurredView.setBlurredLevel(mAlpha);
+            public void onClick(View v) {
+                finish();
             }
         });
+    }
+
+    @Override
+    public void loadWeatherWeb(String url) {
+        webView.loadUrl(url);
     }
 
     @Override
@@ -106,11 +90,42 @@ public class WeatherActivity extends BaseActivity<WeatherPresenter> implements W
 
     @Override
     public void hideLoading() {
+
     }
 
     @Override
     public void onMessage(String msg) {
-        this.toast(msg);
+        toast(msg);
     }
+
+    public class ProgressWebChromeClient extends android.webkit.WebChromeClient {
+
+        ProgressBar progressbar;
+        public ProgressWebChromeClient(ProgressBar progressbar) {
+            super();
+            this.progressbar = progressbar;
+            this.progressbar.setMax(100);
+        }
+
+        @Override
+        public void onProgressChanged(WebView view, int newProgress) {
+            if (progressbar.getVisibility() == View.GONE)
+                progressbar.setVisibility(View.VISIBLE);
+            progressbar.setProgress(newProgress);
+            if (newProgress >= 100) {
+                new Handler().postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        progressbar.setVisibility(View.GONE);
+                    }
+                }, 500);
+            }
+            super.onProgressChanged(view, newProgress);
+        }
+
+
+    }
+
 
 }

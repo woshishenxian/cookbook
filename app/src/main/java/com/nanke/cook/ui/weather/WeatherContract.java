@@ -5,20 +5,19 @@ import android.content.Context;
 import com.nanke.cook.base.BasePresenter;
 import com.nanke.cook.base.BaseView;
 import com.nanke.cook.base.impl.BaseViewImpl;
-import com.nanke.cook.entity.weather.Data;
 
 /**
- * Created by vince on 16/11/3.
+ * Created by vince on 16/11/21.
  */
 
 public class WeatherContract {
 
-    public interface View extends BaseViewImpl {
-        public void loadWeahter(Data data);
+    interface View extends BaseViewImpl{
+        void loadWeatherWeb(String url);
     }
 
-    public interface Presenter extends BasePresenter{
-        public void getWeahter(String cityname);
-        public void onMenuItemClick(Context context, int itemId);
+    interface Presenter extends BasePresenter{
+
+        void getWeather(Context context,String cityName);
     }
 }

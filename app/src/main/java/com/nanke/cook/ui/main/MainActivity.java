@@ -3,12 +3,15 @@ package com.nanke.cook.ui.main;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,10 +25,10 @@ import com.nanke.cook.ui.BaseActivity;
 import com.nanke.cook.ui.about.AboutActivity;
 import com.nanke.cook.ui.collect.FoodsCollectedActivity;
 import com.nanke.cook.ui.main.adapter.ColorsListAdapter;
-import com.nanke.cook.ui.main.fragment.home.HomeFragment;
 import com.nanke.cook.ui.main.fragment.daily.DailyFragment;
+import com.nanke.cook.ui.main.fragment.home.HomeFragment;
 import com.nanke.cook.ui.weather.WeatherActivity;
-import com.nanke.cook.ui.weather.fragment.SublimePickerFragment;
+import com.nanke.cook.ui.main.fragment.SublimePickerFragment;
 import com.nanke.cook.utils.DialogUtils;
 import com.nanke.cook.utils.PreferenceUtils;
 import com.nanke.cook.utils.ThemeUtils;
@@ -55,8 +58,13 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     TextView cityNameView;
     TextView temperatureView;
     ImageView weather_img;
+    ImageView weather_refresh;
 
     BubblePopup bubblePopup;
+
+    Animation animation;
+
+    Handler handler = new Handler();
 
 
     @Override
@@ -97,25 +105,48 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
             weather_img = (ImageView) headerView.findViewById(R.id.weather_img);
             temperatureView = (TextView) headerView.findViewById(R.id.temperatureView);
             cityNameView = (TextView) headerView.findViewById(R.id.cityNameView);
+            weather_refresh = (ImageView) headerView.findViewById(R.id.weather_refresh);
+
+            animation = AnimationUtils.loadAnimation(this,R.anim.refresh_weather);
 
             headerView.setOnClickListener(presenter.getWeatherClickListener());
+            weather_refresh.setOnClickListener(presenter.getWeatherRefreshListener());
             //监听各个菜单
             navi.setNavigationItemSelectedListener(presenter.getNavigationItemSelectedListener());
-            presenter.getWeatherOnToday("青岛");
             bubblePopup = new BubblePopup(this, inflate).anchorView(floatingActionButton)
                     .showAnim(null).dismissAnim(null).dimEnabled(true)
                     .cornerRadius(5f).bubbleColor(Color.WHITE);
+
+            refreshWeather();
         }
         bubblePopup.show();
 
     }
 
+    @Override
+    public void refreshWeather() {
+        weather_refresh.startAnimation(animation);
+        presenter.getWeatherOnToday("青岛");
+    }
 
     @Override
     public void loadWeatherOnToday(Realtime realtime) {
         weather_img.setImageResource(realtime.getWeather().getImgRes());
         temperatureView.setText(realtime.getWeather().getTemperature());
         cityNameView.setText(realtime.getCity_name());
+
+        long duration = weather_refresh.getAnimation().getDuration();
+        long startTime = weather_refresh.getAnimation().getStartTime();
+
+        long curTime = System.currentTimeMillis();
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                weather_refresh.clearAnimation();
+            }
+        },(duration - 100 - (curTime-startTime)%duration));
+
     }
 
     @Override

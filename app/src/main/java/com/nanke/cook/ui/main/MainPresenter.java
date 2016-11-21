@@ -11,8 +11,7 @@ import com.nanke.cook.R;
 import com.nanke.cook.entity.weather.Realtime;
 import com.nanke.cook.source.ObjCallBack;
 import com.nanke.cook.source.WeatherDataRepository;
-import com.nanke.cook.ui.weather.fragment.SublimePickerFragment;
-import com.nanke.cook.view.swipefling.SwipeFlingAdapterView;
+import com.nanke.cook.ui.main.fragment.SublimePickerFragment;
 
 /**
  * Created by vince on 16/11/11.
@@ -65,6 +64,16 @@ public class MainPresenter implements MainContract.Presenter {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 view.saveAndNotifyThemeChange(position);
+            }
+        };
+    }
+
+    @Override
+    public View.OnClickListener getWeatherRefreshListener() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                view.refreshWeather();
             }
         };
     }

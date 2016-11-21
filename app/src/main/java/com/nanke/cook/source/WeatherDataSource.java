@@ -1,11 +1,15 @@
 package com.nanke.cook.source;
 
+import android.content.Context;
+
 import com.nanke.cook.entity.weather.Data;
 import com.nanke.cook.entity.weather.Life;
 import com.nanke.cook.entity.weather.Pm25;
 import com.nanke.cook.entity.weather.Realtime;
 import com.nanke.cook.entity.weather.Weather;
 import com.nanke.cook.entity.weather.WeatherData;
+
+import java.util.Map;
 
 /**
  * Created by vince on 16/11/3.
@@ -48,4 +52,17 @@ public interface WeatherDataSource {
      * @param callBack
      */
     public void getLife(String cityname, ObjCallBack<Life> callBack);
+
+    /**
+     * 获取城市列表
+     * @param context
+     * @param callBack
+     */
+    public void saveCityAndCode(Context context, ObjCallBack<Map<String,String>> callBack);
+    /**
+     * 定位本地城市
+     * @param context
+     * @param callBack
+     */
+    public void gpsLocalCity(Context context, ObjCallBack<String> callBack);
 }

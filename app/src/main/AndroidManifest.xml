@@ -3,6 +3,9 @@
     package="com.nanke.cook">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
 
     <application
         android:name=".application.App"
@@ -51,8 +54,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.weather.WeatherActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/WeatherTheme" />
+            android:screenOrientation="portrait" />
 
 
     </application>

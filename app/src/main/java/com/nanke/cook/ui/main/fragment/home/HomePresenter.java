@@ -1,21 +1,12 @@
 package com.nanke.cook.ui.main.fragment.home;
 
 import android.content.Context;
-import android.support.design.widget.NavigationView;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 
-import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
-import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicker;
 import com.nanke.cook.R;
 import com.nanke.cook.entity.Category;
-import com.nanke.cook.entity.weather.Realtime;
 import com.nanke.cook.source.ArrCallBack;
 import com.nanke.cook.source.FoodsDataRepository;
-import com.nanke.cook.source.ObjCallBack;
-import com.nanke.cook.source.WeatherDataRepository;
-import com.nanke.cook.ui.weather.fragment.SublimePickerFragment;
 
 import java.util.List;
 

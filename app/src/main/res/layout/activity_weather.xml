@@ -5,54 +5,36 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.qiushui.blurredview.BlurredView
-        android:id="@+id/blurredView"
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:disableBlurred="false"
-        app:move="true"
-        app:src="@drawable/dayu" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
-
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@drawable/bg_bar_title"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:navigationIcon="@drawable/abc_ic_ab_back_mtrl_am_alpha">
-
-            <TextView
-                android:id="@+id/city"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="ChongQin"
-                android:textColor="@android:color/white"
-                android:textSize="18sp" />
-
-        </android.support.v7.widget.Toolbar>
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/bg_bar_title"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:navigationIcon="@drawable/abc_ic_ab_back_mtrl_am_alpha">
 
         <TextView
-            android:id="@+id/update_time"
-            android:layout_width="match_parent"
+            android:id="@+id/city"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/toolbar"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="14:28 CST"
+            android:layout_gravity="center"
+            android:text="中国天气网"
             android:textColor="@android:color/white"
-            android:textSize="10sp" />
+            android:textSize="18sp" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycleView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/update_time" />
-    </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <ProgressBar
+        android:id="@+id/prgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@id/toolbar"/>
+
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/prgressBar"/>
 </RelativeLayout>

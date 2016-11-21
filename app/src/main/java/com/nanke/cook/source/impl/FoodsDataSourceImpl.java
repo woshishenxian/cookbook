@@ -42,11 +42,11 @@ public class FoodsDataSourceImpl implements FoodsDataSource {
                 .enqueue(new Callback<FoodsData>() {
                     @Override
                     public void onResponse(Call<FoodsData> call, Response<FoodsData> response) {
-                        if(response.isSuccessful()){
+                        if (response.isSuccessful()) {
                             FoodsData foodsData = response.body();
                             //对数据的处理操作
                             callBack.onTasksLoaded(foodsData.getTngou());
-                        }else{
+                        } else {
                             //请求出现错误例如：404 或者 500
                             callBack.onDataNotAvailable("网络异常");
                         }
@@ -63,11 +63,12 @@ public class FoodsDataSourceImpl implements FoodsDataSource {
 
     @Override
     public void getCategory(Context cotnext, ArrCallBack<Category> callBack) {
-
         try {
             InputStream inputStream = cotnext.getAssets().open("category.txt");
-            CategoryData categoryData = new Gson().fromJson(new InputStreamReader(inputStream),CategoryData.class);
+            CategoryData categoryData = new Gson().fromJson(new InputStreamReader(inputStream), CategoryData.class);
             callBack.onTasksLoaded(categoryData.getTngou());
+            if(inputStream !=null)
+                inputStream.close();
         } catch (IOException e) {
             callBack.onDataNotAvailable("解析错误");
         }
@@ -80,9 +81,9 @@ public class FoodsDataSourceImpl implements FoodsDataSource {
         foodsService.getFoodById(id).enqueue(new Callback<Food>() {
             @Override
             public void onResponse(Call<Food> call, Response<Food> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     callBack.onTasksLoaded(response.body());
-                }else{
+                } else {
                     callBack.onDataNotAvailable("网络异常");
                 }
                 callBack.onComplete();
@@ -97,14 +98,14 @@ public class FoodsDataSourceImpl implements FoodsDataSource {
     }
 
     @Override
-    public void getFoodByName(String name,final ObjCallBack<Food> callBack) {
+    public void getFoodByName(String name, final ObjCallBack<Food> callBack) {
         callBack.start();
         foodsService.getFoodByName(name).enqueue(new Callback<Food>() {
             @Override
             public void onResponse(Call<Food> call, Response<Food> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     callBack.onTasksLoaded(response.body());
-                }else{
+                } else {
                     callBack.onDataNotAvailable("网络异常");
                 }
                 callBack.onComplete();

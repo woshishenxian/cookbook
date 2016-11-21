@@ -3,12 +3,10 @@ package com.nanke.cook.ui.main;
 import android.support.design.widget.NavigationView;
 import android.widget.AdapterView;
 
-import com.flyco.dialog.widget.popup.BubblePopup;
 import com.nanke.cook.base.BasePresenter;
-import com.nanke.cook.base.BaseView;
 import com.nanke.cook.base.impl.BaseViewImpl;
 import com.nanke.cook.entity.weather.Realtime;
-import com.nanke.cook.ui.weather.fragment.SublimePickerFragment;
+import com.nanke.cook.ui.main.fragment.SublimePickerFragment;
 
 /**
  * Created by vince on 16/11/11.
@@ -35,11 +33,14 @@ public class MainContract {
 
         void loadWeatherOnToday(Realtime realtime);
 
+        void refreshWeather();
     }
 
     interface Presenter extends BasePresenter{
 
         void getWeatherOnToday(String cityname);
+
+        android.view.View.OnClickListener getWeatherRefreshListener();
 
         android.view.View.OnClickListener getWeatherClickListener();
 

@@ -4,47 +4,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
-import com.appeaser.sublimepickerlibrary.helpers.SublimeOptions;
-import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicker;
 import com.nanke.cook.R;
 import com.nanke.cook.entity.Category;
-import com.nanke.cook.entity.weather.Realtime;
-import com.nanke.cook.event.BusEvent;
-import com.nanke.cook.ui.about.AboutActivity;
-import com.nanke.cook.ui.collect.FoodsCollectedActivity;
 import com.nanke.cook.ui.main.MainActivity;
-import com.nanke.cook.ui.main.adapter.ColorsListAdapter;
 import com.nanke.cook.ui.main.adapter.MainViewPageAdapter;
 import com.nanke.cook.ui.search.SearchResultsActivity;
-import com.nanke.cook.ui.weather.WeatherActivity;
-import com.nanke.cook.ui.weather.fragment.SublimePickerFragment;
-import com.nanke.cook.utils.DialogUtils;
-import com.nanke.cook.utils.PreferenceUtils;
-import com.nanke.cook.utils.ThemeUtils;
 import com.nanke.cook.view.indicator.BaseIconFragment;
 
-import org.greenrobot.eventbus.EventBus;
-
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.ButterKnife;

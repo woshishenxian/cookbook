@@ -6,6 +6,7 @@ import com.nanke.cook.entity.Category;
 import com.nanke.cook.entity.Food;
 import com.nanke.cook.source.impl.FoodsDataSourceImpl;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -27,7 +28,7 @@ public class FoodsDataRepository implements FoodsDataSource {
 
     @Override
     public void getCategory(Context cotnext, ArrCallBack<Category> callBack) {
-        foodsDataSource.getCategory(cotnext,callBack);
+            foodsDataSource.getCategory(cotnext,callBack);
     }
 
     @Override
