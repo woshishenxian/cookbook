@@ -38,9 +38,6 @@
         <item name="tabView">@style/MainTabView</item>
     </style>
 
-    <style name="WeatherTheme" parent="AppBaseTheme.Dark">
-
-    </style>
 
     <style name="BaseDialogTheme" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:textColorPrimary">@color/text_color_primary</item>
@@ -188,6 +185,19 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <style name="SplashTheme.base" parent="AppBaseTheme.Dark">
+        <!-- 填充屏幕 -->
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="SplashTheme" parent="SplashTheme.base">
+        <!-- 填充屏幕 -->
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFullscreen">true</item>
+
     </style>
 
 

@@ -2,6 +2,7 @@ package com.nanke.cook.source;
 
 import android.content.Context;
 
+import com.nanke.cook.entity.City;
 import com.nanke.cook.entity.weather.Data;
 import com.nanke.cook.entity.weather.Life;
 import com.nanke.cook.entity.weather.Pm25;
@@ -10,6 +11,7 @@ import com.nanke.cook.entity.weather.Weather;
 import com.nanke.cook.entity.weather.WeatherData;
 import com.nanke.cook.source.impl.WeatherDataSourceImpl;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -50,7 +52,17 @@ public class WeatherDataRepository implements WeatherDataSource{
     }
 
     @Override
-    public void saveCityAndCode(Context context, ObjCallBack<Map<String, String>> callBack) {
+    public void saveCityAndCode(Context context, ObjCallBack<List<City>> callBack) {
         weatherDataSource.saveCityAndCode(context,callBack);
+    }
+
+    @Override
+    public void gpsLocalCity(Context context, ObjCallBack<String> callBack) {
+        weatherDataSource.gpsLocalCity(context,callBack);
+    }
+
+    @Override
+    public void getCodeByCityName(String cityName, ObjCallBack<String> callBack) {
+        weatherDataSource.getCodeByCityName(cityName, callBack);
     }
 }

@@ -7,7 +7,7 @@
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navi"
-        android:layout_width="240dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:headerLayout="@layout/fragment_home_drawer_header"
         app:menu="@menu/menu_activity_main_drawer" />

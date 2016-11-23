@@ -91,7 +91,7 @@ public class FoodsCollectedPresenter implements FoodsCollectedContract.Presenter
         MaterialDialog dialog = new MaterialDialog(context);
         dialog.title("温馨提示")
                 .content("确定要清空收藏夹吗?")
-                .btnText(btns).widthScale(0.7f).show();
+                .btnText(btns).widthScale(0.8f).show();
 
         dialog.setOnBtnClickL(null,new OnBtnClickL() {
             @Override

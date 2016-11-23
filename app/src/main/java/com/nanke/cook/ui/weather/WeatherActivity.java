@@ -54,8 +54,7 @@ public class WeatherActivity extends BaseActivity<WeatherPresenter> implements W
             }
         });
 
-        progressBar.setProgress(20);
-        presenter.getWeather(this,"青岛");
+        presenter.getWeather(this);
     }
 
     @Override
@@ -85,7 +84,6 @@ public class WeatherActivity extends BaseActivity<WeatherPresenter> implements W
 
     @Override
     public void showLoading() {
-
     }
 
     @Override

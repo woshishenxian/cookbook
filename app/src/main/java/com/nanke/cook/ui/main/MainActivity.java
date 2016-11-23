@@ -3,10 +3,8 @@ package com.nanke.cook.ui.main;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +14,6 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.appeaser.sublimepickerlibrary.helpers.SublimeOptions;
 import com.flyco.dialog.widget.popup.BubblePopup;
 import com.nanke.cook.R;
 import com.nanke.cook.entity.weather.Realtime;
@@ -28,7 +25,6 @@ import com.nanke.cook.ui.main.adapter.ColorsListAdapter;
 import com.nanke.cook.ui.main.fragment.daily.DailyFragment;
 import com.nanke.cook.ui.main.fragment.home.HomeFragment;
 import com.nanke.cook.ui.weather.WeatherActivity;
-import com.nanke.cook.ui.main.fragment.SublimePickerFragment;
 import com.nanke.cook.utils.DialogUtils;
 import com.nanke.cook.utils.PreferenceUtils;
 import com.nanke.cook.utils.ThemeUtils;
@@ -63,8 +59,6 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     BubblePopup bubblePopup;
 
     Animation animation;
-
-    Handler handler = new Handler();
 
 
     @Override
@@ -116,8 +110,6 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
             bubblePopup = new BubblePopup(this, inflate).anchorView(floatingActionButton)
                     .showAnim(null).dismissAnim(null).dimEnabled(true)
                     .cornerRadius(5f).bubbleColor(Color.WHITE);
-
-            refreshWeather();
         }
         bubblePopup.show();
 
@@ -126,7 +118,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     @Override
     public void refreshWeather() {
         weather_refresh.startAnimation(animation);
-        presenter.getWeatherOnToday("青岛");
+        presenter.getWeatherOnToday(this);
     }
 
     @Override
@@ -135,39 +127,16 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
         temperatureView.setText(realtime.getWeather().getTemperature());
         cityNameView.setText(realtime.getCity_name());
 
-        long duration = weather_refresh.getAnimation().getDuration();
-        long startTime = weather_refresh.getAnimation().getStartTime();
-
-        long curTime = System.currentTimeMillis();
-
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                weather_refresh.clearAnimation();
-            }
-        },(duration - 100 - (curTime-startTime)%duration));
 
     }
 
     @Override
-    public void showCalendar() {
-        SublimePickerFragment pickerFrag = new SublimePickerFragment();
-        pickerFrag.setCallback(presenter.getSublimePickerCallback());
-
-        SublimeOptions options = new SublimeOptions();
-        options.setPickerToShow(SublimeOptions.Picker.DATE_PICKER);
-        options.setDisplayOptions(1);
-
-        // Enable/disable the date range selection feature
-        options.setCanPickDateRange(true);
-        // Valid options
-        Bundle bundle = new Bundle();
-        bundle.putParcelable("SUBLIME_OPTIONS", options);
-        pickerFrag.setArguments(bundle);
-
-        pickerFrag.setStyle(DialogFragment.STYLE_NO_TITLE, 0);
-        pickerFrag.show(getSupportFragmentManager(), "SUBLIME_PICKER");
+    public void weatherRefreshError() {
+        weather_img.setImageResource(R.mipmap.d_wz);
+        temperatureView.setText("天气刷新失败");
+        cityNameView.setText("");
     }
+
 
     @Override
     public void showThemeChoose() {
@@ -201,7 +170,8 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
 
     @Override
     public void startWeatherActivity() {
-        startActivity(new Intent(this, WeatherActivity.class));
+        Intent intent =new Intent(this, WeatherActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -228,19 +198,4 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
         return fragments;
     }
 
-
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void hideLoading() {
-
-    }
-
-    @Override
-    public void onMessage(String msg) {
-
-    }
 }

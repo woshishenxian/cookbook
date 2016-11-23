@@ -23,28 +23,51 @@ public class WeatherPresenter implements WeatherContract.Presenter{
     }
 
     @Override
-    public void getWeather(Context context, final String cityName) {
-        weatherDataRepository.saveCityAndCode(context, new ObjCallBack<Map<String, String>>() {
-            @Override
-            public void onTasksLoaded(Map<String, String> tasks) {
-                view.loadWeatherWeb("http://e.weather.com.cn/d/index/"+tasks.get(cityName)+".shtml");
-            }
-
-            @Override
-            public void onDataNotAvailable(String msg) {
-                view.onMessage(msg);
-            }
-
-            @Override
-            public void start() {
-
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-        });
-
+    public void getWeather(Context context) {
+        weatherDataRepository.gpsLocalCity(context,cityObjCallBack);
     }
+    private ObjCallBack<String> cityObjCallBack = new ObjCallBack<String>() {
+        @Override
+        public void onTasksLoaded(String tasks) {
+            weatherDataRepository.getCodeByCityName(tasks,codeObjCallBack);
+        }
+
+        @Override
+        public void onDataNotAvailable(String msg) {
+            view.onMessage(msg);
+        }
+
+        @Override
+        public void start() {
+            view.showLoading();
+        }
+
+        @Override
+        public void onComplete() {
+
+        }
+    };
+
+
+    private ObjCallBack<String> codeObjCallBack = new ObjCallBack<String>() {
+        @Override
+        public void onTasksLoaded(String tasks) {
+            view.loadWeatherWeb("http://e.weather.com.cn/d/index/"+tasks+".shtml");
+        }
+
+        @Override
+        public void onDataNotAvailable(String msg) {
+            view.onMessage(msg);
+        }
+
+        @Override
+        public void start() {
+            view.showLoading();
+        }
+
+        @Override
+        public void onComplete() {
+
+        }
+    };
 }

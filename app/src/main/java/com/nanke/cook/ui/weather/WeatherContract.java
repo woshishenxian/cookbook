@@ -18,6 +18,7 @@ public class WeatherContract {
 
     interface Presenter extends BasePresenter{
 
-        void getWeather(Context context,String cityName);
+        void getWeather(Context context);
+
     }
 }

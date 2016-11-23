@@ -1,17 +1,15 @@
 package com.nanke.cook.ui.main;
 
+import android.content.Context;
 import android.support.design.widget.NavigationView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 
-import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
-import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicker;
 import com.nanke.cook.R;
 import com.nanke.cook.entity.weather.Realtime;
 import com.nanke.cook.source.ObjCallBack;
 import com.nanke.cook.source.WeatherDataRepository;
-import com.nanke.cook.ui.main.fragment.SublimePickerFragment;
 
 /**
  * Created by vince on 16/11/11.
@@ -34,9 +32,6 @@ public class MainPresenter implements MainContract.Presenter {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.btn_calendar:
-                        view.showCalendar();
-                        break;
                     case R.id.btn_collect_center:
                         view.startFoodsCollectedActivity();
                         break;
@@ -54,8 +49,8 @@ public class MainPresenter implements MainContract.Presenter {
 
 
     @Override
-    public void getWeatherOnToday(String cityname) {
-        weatherDataRepository.getWeather(cityname, weatherObjCallBack);
+    public void getWeatherOnToday(Context context) {
+        weatherDataRepository.gpsLocalCity(context,cityObjCallBack);
     }
 
     @Override
@@ -78,20 +73,6 @@ public class MainPresenter implements MainContract.Presenter {
         };
     }
 
-    @Override
-    public SublimePickerFragment.Callback getSublimePickerCallback() {
-        return new SublimePickerFragment.Callback() {
-            @Override
-            public void onCancelled() {
-
-            }
-
-            @Override
-            public void onDateTimeRecurrenceSet(SelectedDate selectedDate, int hourOfDay, int minute, SublimeRecurrencePicker.RecurrenceOption recurrenceOption, String recurrenceRule) {
-
-            }
-        };
-    }
 
 
     @Override
@@ -107,7 +88,29 @@ public class MainPresenter implements MainContract.Presenter {
     @Override
     public void onFBClick() {
         view.showBubblePopup();
+        view.refreshWeather();
     }
+
+
+    //定位城市回调
+    private ObjCallBack<String> cityObjCallBack = new ObjCallBack<String>() {
+        @Override
+        public void onTasksLoaded(String tasks) {
+            weatherDataRepository.getWeather(tasks, weatherObjCallBack);
+        }
+
+        @Override
+        public void onDataNotAvailable(String msg) {
+        }
+
+        @Override
+        public void start() {
+        }
+
+        @Override
+        public void onComplete() {
+        }
+    };
 
 
     //天气数据回调
@@ -119,17 +122,15 @@ public class MainPresenter implements MainContract.Presenter {
 
         @Override
         public void onDataNotAvailable(String msg) {
-            view.onMessage(msg);
+            view.weatherRefreshError();
         }
 
         @Override
         public void start() {
-            view.showLoading();
         }
 
         @Override
         public void onComplete() {
-            view.hideLoading();
         }
     };
 
