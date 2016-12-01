@@ -18,7 +18,6 @@ public class App extends Application{
         super.onCreate();
         mContext = getApplicationContext();
         LogUtils.debug = true;
-//        DBManager.getInstance();
     }
 
     public static Context getContext() {

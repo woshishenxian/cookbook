@@ -63,7 +63,7 @@ public class AboutActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        overridePendingTransition(R.anim.activity_down_up_anim, R.anim.activity_exit_anim);
         version_text.setText("v"+BuildConfig.VERSION_NAME);
     }
 
@@ -91,5 +91,11 @@ public class AboutActivity extends BaseActivity {
     private void showShareDialog(){
         ShareBottomDialog shareBottomDialog = new ShareBottomDialog(this);
         shareBottomDialog.showAnim(new BounceTopEnter()).show();
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.activity_exit_anim, R.anim.activity_up_down_anim);
     }
 }

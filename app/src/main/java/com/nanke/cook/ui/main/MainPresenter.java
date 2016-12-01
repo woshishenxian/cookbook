@@ -1,15 +1,23 @@
 package com.nanke.cook.ui.main;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
+import android.provider.Settings;
 import android.support.design.widget.NavigationView;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 
+import com.flyco.dialog.listener.OnBtnClickL;
+import com.flyco.dialog.widget.MaterialDialog;
 import com.nanke.cook.R;
 import com.nanke.cook.entity.weather.Realtime;
 import com.nanke.cook.source.ObjCallBack;
 import com.nanke.cook.source.WeatherDataRepository;
+import com.nanke.cook.utils.PermissionM;
 
 /**
  * Created by vince on 16/11/11.
@@ -17,121 +25,20 @@ import com.nanke.cook.source.WeatherDataRepository;
 
 public class MainPresenter implements MainContract.Presenter {
 
+
     private MainContract.View view;
-    private WeatherDataRepository weatherDataRepository;
 
     public MainPresenter(MainContract.View view) {
-        this.weatherDataRepository = new WeatherDataRepository();
         this.view = view;
         this.view.initViewPager();
     }
 
-    @Override
-    public NavigationView.OnNavigationItemSelectedListener getNavigationItemSelectedListener() {
-        return new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.btn_collect_center:
-                        view.startFoodsCollectedActivity();
-                        break;
-                    case R.id.btn_theme:
-                        view.showThemeChoose();
-                        break;
-                    case R.id.btn_about:
-                        view.startAboutActivity();
-                        break;
-                }
-                return true;
-            }
-        };
-    }
 
-
-    @Override
-    public void getWeatherOnToday(Context context) {
-        weatherDataRepository.gpsLocalCity(context,cityObjCallBack);
-    }
-
-    @Override
-    public AdapterView.OnItemClickListener getThemeChooseItemListener() {
-        return new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                view.saveAndNotifyThemeChange(position);
-            }
-        };
-    }
-
-    @Override
-    public View.OnClickListener getWeatherRefreshListener() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                view.refreshWeather();
-            }
-        };
-    }
-
-
-
-    @Override
-    public View.OnClickListener getWeatherClickListener() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                view.startWeatherActivity();
-            }
-        };
-    }
 
     @Override
     public void onFBClick() {
-        view.showBubblePopup();
-        view.refreshWeather();
+        view.startAboutActivity();
     }
 
-
-    //定位城市回调
-    private ObjCallBack<String> cityObjCallBack = new ObjCallBack<String>() {
-        @Override
-        public void onTasksLoaded(String tasks) {
-            weatherDataRepository.getWeather(tasks, weatherObjCallBack);
-        }
-
-        @Override
-        public void onDataNotAvailable(String msg) {
-        }
-
-        @Override
-        public void start() {
-        }
-
-        @Override
-        public void onComplete() {
-        }
-    };
-
-
-    //天气数据回调
-    private ObjCallBack<Realtime> weatherObjCallBack = new ObjCallBack<Realtime>() {
-        @Override
-        public void onTasksLoaded(Realtime tasks) {
-            view.loadWeatherOnToday(tasks);
-        }
-
-        @Override
-        public void onDataNotAvailable(String msg) {
-            view.weatherRefreshError();
-        }
-
-        @Override
-        public void start() {
-        }
-
-        @Override
-        public void onComplete() {
-        }
-    };
 
 }

@@ -28,7 +28,6 @@ import com.nanke.cook.view.swipefling.SwipeFlingAdapterView;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.dinus.com.loadingdrawable.LoadingView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -120,21 +119,21 @@ public class DailyFragment extends BaseIconFragment implements DailyContract.Vie
 
     @Override
     public void showLoading() {
-        if(progressDialog == null){
-            progressDialog = new ProgressDialog(getContext());
-            progressDialog.setMessage("努力加载中...");
-            progressDialog.setCanceledOnTouchOutside(false);
-        }
-        if(!progressDialog.isShowing()){
-            progressDialog.show();
-        }
+//        if(progressDialog == null){
+//            progressDialog = new ProgressDialog(getContext());
+//            progressDialog.setMessage("努力加载中...");
+//            progressDialog.setCanceledOnTouchOutside(false);
+//        }
+//        if(!progressDialog.isShowing()){
+//            progressDialog.show();
+//        }
     }
 
     @Override
     public void hideLoading() {
-        if(progressDialog!=null && progressDialog.isShowing()){
-            progressDialog.dismiss();
-        }
+//        if(progressDialog!=null && progressDialog.isShowing()){
+//            progressDialog.dismiss();
+//        }
     }
 
     @Override

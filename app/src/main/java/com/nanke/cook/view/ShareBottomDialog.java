@@ -7,8 +7,6 @@ import android.widget.LinearLayout;
 import com.flyco.animation.FlipEnter.FlipVerticalSwingEnter;
 import com.flyco.dialog.widget.base.BottomBaseDialog;
 import com.nanke.cook.R;
-import com.nanke.cook.utils.SnackbarUtils;
-import com.nanke.cook.utils.T;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -43,28 +41,28 @@ public class ShareBottomDialog extends BottomBaseDialog<ShareBottomDialog> {
         mLlWechatFriendCircle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                T.showShort(mContext, "朋友圈");
+//                T.showShort(mContext, "朋友圈");
                 dismiss();
             }
         });
         mLlWechatFriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                T.showShort(mContext, "微信");
+//                T.showShort(mContext, "微信");
                 dismiss();
             }
         });
         mLlQq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                T.showShort(mContext, "QQ");
+//                T.showShort(mContext, "QQ");
                 dismiss();
             }
         });
         mLlSms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                T.showShort(mContext, "短信");
+//                T.showShort(mContext, "短信");
                 dismiss();
             }
         });

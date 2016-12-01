@@ -65,4 +65,9 @@ public class WeatherDataRepository implements WeatherDataSource{
     public void getCodeByCityName(String cityName, ObjCallBack<String> callBack) {
         weatherDataSource.getCodeByCityName(cityName, callBack);
     }
+
+    @Override
+    public boolean haveSavedForCity() {
+        return weatherDataSource.haveSavedForCity();
+    }
 }

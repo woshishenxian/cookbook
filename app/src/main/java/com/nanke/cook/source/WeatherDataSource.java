@@ -56,6 +56,11 @@ public interface WeatherDataSource {
     public void getLife(String cityname, ObjCallBack<Life> callBack);
 
     /**
+     * 判读是否已经保存
+     */
+    public boolean haveSavedForCity();
+
+    /**
      * 城市列表
      * @param context
      * @param callBack
@@ -67,6 +72,7 @@ public interface WeatherDataSource {
      * @param callBack
      */
     public void gpsLocalCity(Context context, ObjCallBack<String> callBack);
+
     /**
      * 获取城市编号
      * @param cityName

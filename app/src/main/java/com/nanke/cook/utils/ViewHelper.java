@@ -4,7 +4,7 @@ import android.support.v4.view.ViewCompat;
 import android.view.View;
 
 /**
- * Created by vince on 16/10/26.
+ * Created by vince on 16/12/1.
  */
 
 public class ViewHelper {

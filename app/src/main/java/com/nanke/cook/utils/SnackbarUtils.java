@@ -23,7 +23,7 @@ public class SnackbarUtils {
     }
 
     public static void show(Activity activity, String message) {
-        View view = activity.getWindow().getDecorView();
+        View view = activity.getWindow().getDecorView().findViewById(android.R.id.content);
         show(view, message);
     }
 

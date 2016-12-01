@@ -356,4 +356,8 @@ public class WeatherDataSourceImpl implements WeatherDataSource {
     };
 
 
+    @Override
+    public boolean haveSavedForCity() {
+        return DBManager.getInstance().getDaoSession().getCityDao().queryBuilder().count() >0;
+    }
 }

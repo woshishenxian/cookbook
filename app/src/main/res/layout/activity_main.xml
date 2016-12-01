@@ -40,7 +40,7 @@
         app:elevation="3dp"
         app:fabSize="mini"
         app:layout_anchor="@id/indicator"
-        app:layout_anchorGravity="center_horizontal"
+        app:layout_anchorGravity="center"
         app:pressedTranslationZ="6dp" />
 
 </android.support.design.widget.CoordinatorLayout>

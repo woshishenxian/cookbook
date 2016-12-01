@@ -38,18 +38,45 @@
         <item name="tabView">@style/MainTabView</item>
     </style>
 
+    <style name="AppTheme" parent="GreenTheme">
 
-    <style name="BaseDialogTheme" parent="Theme.AppCompat.Light.Dialog">
-        <item name="android:textColorPrimary">@color/text_color_primary</item>
-        <item name="android:textColorSecondary">@color/text_second_color_primary</item>
-        <item name="android:windowEnterAnimation">@anim/abc_fade_in</item>
-        <item name="android:windowExitAnimation">@anim/abc_fade_out</item>
     </style>
 
-    <style name="AppTheme" parent="AppBaseTheme.Dark">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-        <item name="tabView">@style/MainTabView</item>
+
+    <style name="SplashTheme" parent="AppTheme">
+        <!-- 填充屏幕 -->
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFullscreen">true</item>
+
+        <item name="android:background">@color/accent_blue</item>
     </style>
+
+
+
+    <style name="MainTabView" parent="TabView">
+        <item name="android:textSize">14sp</item>
+        <item name="iconWidth">20dp</item>
+        <item name="iconHeight">20dp</item>
+    </style>
+
+    <style name="TabView">
+        <item name="android:gravity">bottom|center_horizontal</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:background">@android:color/white</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">@color/tab_text_selector</item>
+        <item name="android:textSize">12sp</item>
+        <item name="iconWidth">27dp</item>
+        <item name="iconHeight">27dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:drawablePadding">2dp</item>
+    </style>
+
+    <style name="OverflowMenuStyle" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
+        <item name="overlapAnchor">false</item>
+    </style>
+
 
     <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
         <item name="queryBackground">@android:color/transparent</item>
@@ -84,13 +111,8 @@
     </style>
 
 
+    <!-- 默认的几种主题配色-->
     <style name="RedTheme" parent="AppBaseTheme.Dark">
-        <item name="colorPrimary">@color/red</item>
-        <item name="colorPrimaryDark">@color/dark_red</item>
-        <item name="colorAccent">@color/accent_red</item>
-    </style>
-
-    <style name="RedDialogTheme" parent="BaseDialogTheme">
         <item name="colorPrimary">@color/red</item>
         <item name="colorPrimaryDark">@color/dark_red</item>
         <item name="colorAccent">@color/accent_red</item>
@@ -102,11 +124,6 @@
         <item name="colorAccent">@color/accent_brown</item>
     </style>
 
-    <style name="BrownDialogTheme" parent="BaseDialogTheme">
-        <item name="colorPrimary">@color/brown</item>
-        <item name="colorPrimaryDark">@color/dark_brown</item>
-        <item name="colorAccent">@color/accent_brown</item>
-    </style>
 
     <style name="BlueTheme" parent="AppBaseTheme.Dark">
         <item name="colorPrimary">@color/blue</item>
@@ -114,11 +131,6 @@
         <item name="colorAccent">@color/accent_blue</item>
     </style>
 
-    <style name="BlueDialogTheme" parent="BaseDialogTheme">
-        <item name="colorPrimary">@color/blue</item>
-        <item name="colorPrimaryDark">@color/dark_blue</item>
-        <item name="colorAccent">@color/accent_blue</item>
-    </style>
 
     <style name="BlueGreyTheme" parent="AppBaseTheme.Dark">
         <item name="colorPrimary">@color/blue_grey</item>
@@ -126,11 +138,6 @@
         <item name="colorAccent">@color/accent_blue_grey</item>
     </style>
 
-    <style name="BlueGreyDialogTheme" parent="BaseDialogTheme">
-        <item name="colorPrimary">@color/blue_grey</item>
-        <item name="colorPrimaryDark">@color/dark_blue_grey</item>
-        <item name="colorAccent">@color/accent_blue_grey</item>
-    </style>
 
     <style name="YellowTheme" parent="AppBaseTheme.Dark">
         <item name="colorPrimary">@color/yellow</item>
@@ -138,11 +145,6 @@
         <item name="colorAccent">@color/accent_yellow</item>
     </style>
 
-    <style name="YellowDialogTheme" parent="BaseDialogTheme">
-        <item name="colorPrimary">@color/yellow</item>
-        <item name="colorPrimaryDark">@color/dark_yellow</item>
-        <item name="colorAccent">@color/accent_yellow</item>
-    </style>
 
     <style name="DeepPurpleTheme" parent="AppBaseTheme.Dark">
         <item name="colorPrimary">@color/deep_purple</item>
@@ -150,11 +152,6 @@
         <item name="colorAccent">@color/accent_deep_purple</item>
     </style>
 
-    <style name="DeepPurpleDialogTheme" parent="BaseDialogTheme">
-        <item name="colorPrimary">@color/deep_purple</item>
-        <item name="colorPrimaryDark">@color/dark_deep_purple</item>
-        <item name="colorAccent">@color/accent_deep_purple</item>
-    </style>
 
     <style name="PinkTheme" parent="AppBaseTheme.Dark">
         <item name="colorPrimary">@color/pink</item>
@@ -162,11 +159,6 @@
         <item name="colorAccent">@color/accent_pink</item>
     </style>
 
-    <style name="PinkDialogTheme" parent="BaseDialogTheme">
-        <item name="colorPrimary">@color/pink</item>
-        <item name="colorPrimaryDark">@color/dark_pink</item>
-        <item name="colorAccent">@color/accent_pink</item>
-    </style>
 
     <style name="GreenTheme" parent="AppBaseTheme.Dark">
         <item name="colorPrimary">@color/green</item>
@@ -174,54 +166,5 @@
         <item name="colorAccent">@color/accent_green</item>
     </style>
 
-    <style name="GreenDialogTheme" parent="BaseDialogTheme">
-        <item name="colorPrimary">@color/green</item>
-        <item name="colorPrimaryDark">@color/dark_green</item>
-        <item name="colorAccent">@color/accent_green</item>
-    </style>
 
-    <style name="ShareDialog" parent="BaseDialogTheme">
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowIsFloating">true</item>
-    </style>
-
-    <style name="SplashTheme.base" parent="AppBaseTheme.Dark">
-        <!-- 填充屏幕 -->
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowFullscreen">true</item>
-    </style>
-
-    <style name="SplashTheme" parent="SplashTheme.base">
-        <!-- 填充屏幕 -->
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowFullscreen">true</item>
-
-    </style>
-
-
-    <style name="MainTabView" parent="TabView">
-        <item name="android:textSize">14sp</item>
-        <item name="iconWidth">20dp</item>
-        <item name="iconHeight">20dp</item>
-    </style>
-
-    <style name="TabView">
-        <item name="android:gravity">bottom|center_horizontal</item>
-        <item name="android:layout_width">0dp</item>
-        <item name="android:background">@android:color/white</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:textColor">@color/tab_text_selector</item>
-        <item name="android:textSize">12sp</item>
-        <item name="iconWidth">27dp</item>
-        <item name="iconHeight">27dp</item>
-        <item name="android:paddingTop">4dp</item>
-        <item name="android:paddingBottom">4dp</item>
-        <item name="android:drawablePadding">2dp</item>
-    </style>
-
-    <style name="OverflowMenuStyle" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
-        <item name="overlapAnchor">false</item>
-    </style>
 </resources>

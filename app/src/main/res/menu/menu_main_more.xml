@@ -7,4 +7,15 @@
         android:icon="@drawable/abc_ic_search_api_mtrl_alpha"
         android:title="@string/search" />
 
+    <item
+        android:id="@+id/btn_collect_center"
+        android:title="@string/collect_mine" />
+
+    <item
+        android:id="@+id/btn_weather"
+        android:title="@string/weather" />
+    <item
+        android:id="@+id/btn_about"
+        android:title="@string/about" />
+
 </menu>
