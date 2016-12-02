@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.view.ActionMode;
 
 import com.nanke.cook.R;
 import com.nanke.cook.ui.BaseActivity;
@@ -43,8 +44,5 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
         startActivity(new Intent(this,MainActivity.class));
         finish();
     }
-
-
-
 
 }

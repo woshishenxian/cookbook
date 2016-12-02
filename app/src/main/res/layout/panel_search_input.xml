@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_cardview"
+    android:layout_margin="10dp">
+
+    <RelativeLayout
+        android:id="@+id/weather_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/bg_panel_weather">
+
+
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:queryHint="@string/search_hint"
+            android:imeOptions="actionSearch"
+            android:iconifiedByDefault="true"
+            android:layout_margin="20dp"
+            android:background="@drawable/bg_cardview"
+            android:layout_centerInParent="true"/>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="25dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="110dp"
+            android:layout_height="34dp"
+            android:background="@drawable/corner_common_border_gray"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/grey"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_enter"
+            android:layout_width="110dp"
+            android:layout_height="34dp"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/corner_common_border_gray"
+            android:gravity="center"
+            android:text="搜索"
+            android:textColor="?attr/colorAccent"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+
+</LinearLayout>

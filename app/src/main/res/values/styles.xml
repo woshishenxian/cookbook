@@ -48,9 +48,15 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowFullscreen">true</item>
 
-        <item name="android:background">@color/accent_blue</item>
+        <item name="android:background">?attr/colorPrimary</item>
     </style>
 
+    <style name="Animation_Right">
+        <item name="android:activityOpenEnterAnimation">@anim/activity_down_up_anim</item>
+        <item name="android:activityOpenExitAnimation">@anim/activity_exit_anim</item>
+        <item name="android:activityCloseEnterAnimation">@anim/activity_exit_anim</item>
+        <item name="android:activityCloseExitAnimation">@anim/activity_up_down_anim</item>
+    </style>
 
 
     <style name="MainTabView" parent="TabView">

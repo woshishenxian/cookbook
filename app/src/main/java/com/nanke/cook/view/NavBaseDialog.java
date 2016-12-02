@@ -31,6 +31,7 @@ public class NavBaseDialog extends BaseDialog<NavBaseDialog> {
     public NavBaseDialog(Context context) {
         super(context);
     }
+
     public NavBaseDialog(Context context, Callback callback) {
         super(context);
         this.callback = callback;
@@ -61,27 +62,30 @@ public class NavBaseDialog extends BaseDialog<NavBaseDialog> {
         this.temperatureView.setText(temperature);
     }
 
-    public void setWeather_img( int resId) {
+    public void setWeather_img(int resId) {
         this.weather_img.setImageResource(resId);
     }
 
 
     @OnClick(R.id.tv_cancel)
-    public void onCancelClick(){
+    public void onCancelClick() {
         dismiss();
     }
 
 
     @OnClick(R.id.tv_enter)
-    public void startWeatherActivity(){
-        if(callback !=null){
+    public void startWeatherActivity() {
+        if (callback != null) {
             callback.rightClick();
         }
     }
 
     @OnClick(R.id.weather_content)
-    public void refreshWeather(){
-        if(callback !=null){
+    public void refreshWeather() {
+        setWeather_img(R.mipmap.d_wz);
+        setTemperature("更新中...");
+        setCityName("");
+        if (callback != null) {
             callback.contentClick();
         }
     }
@@ -92,7 +96,7 @@ public class NavBaseDialog extends BaseDialog<NavBaseDialog> {
         this.callback = callback;
     }
 
-    public interface Callback{
+    public interface Callback {
         void contentClick();
 
         void rightClick();

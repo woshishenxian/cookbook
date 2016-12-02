@@ -21,6 +21,7 @@ import com.nanke.cook.source.ObjCallBack;
 import com.nanke.cook.source.WeatherDataRepository;
 import com.nanke.cook.utils.PermissionM;
 import com.nanke.cook.view.NavBaseDialog;
+import com.nanke.cook.view.SearchBaseDialog;
 
 import java.util.List;
 
@@ -77,7 +78,7 @@ public class HomePresenter implements HomeContract.Presenter {
                 view.showWeatherDialog();
                 break;
             case R.id.search:
-                view.startSearchActivity();
+                view.showSearchDialog();
                 break;
         }
     }
@@ -123,7 +124,7 @@ public class HomePresenter implements HomeContract.Presenter {
     }
 
     @Override
-    public NavBaseDialog.Callback getCallback() {
+    public NavBaseDialog.Callback getNavCallback() {
         return new NavBaseDialog.Callback() {
             @Override
             public void contentClick() {
@@ -133,6 +134,16 @@ public class HomePresenter implements HomeContract.Presenter {
             @Override
             public void rightClick() {
                 view.startWeatherActivity();
+            }
+        };
+    }
+
+    @Override
+    public SearchBaseDialog.Callback getSearchCallback() {
+        return new SearchBaseDialog.Callback(){
+            @Override
+            public void query(String string) {
+                view.startSearchActivity(string);
             }
         };
     }

@@ -9,7 +9,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="120dp"
-            android:textColor="?attr/colorAccent"
+            android:textColor="@android:color/white"
             android:textSize="@dimen/abc_text_size_display_1_material"
             android:text="@string/app_name"/>
 

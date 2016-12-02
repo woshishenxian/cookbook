@@ -16,7 +16,7 @@
     <string name="calendar">日历</string>
     <string name="weather">天气</string>
 
-    <string name="search_hint">搜索美食</string>
+    <string name="search_hint">填写完整的菜名</string>
     <string name="share_cook">分享美食</string>
     <string name="share">分享</string>
     <string name="more">查看更多</string>

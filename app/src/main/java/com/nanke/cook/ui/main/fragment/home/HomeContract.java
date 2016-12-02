@@ -10,6 +10,7 @@ import com.nanke.cook.base.impl.BaseViewImpl;
 import com.nanke.cook.entity.Category;
 import com.nanke.cook.entity.weather.Realtime;
 import com.nanke.cook.view.NavBaseDialog;
+import com.nanke.cook.view.SearchBaseDialog;
 
 import java.util.List;
 
@@ -25,7 +26,9 @@ public class HomeContract {
 
         void loadCategory(List<Category> categories);
 
-        void startSearchActivity();
+        void showSearchDialog();
+
+        void startSearchActivity(String query);
 
         void startFoodsCollectedActivity();
 
@@ -41,6 +44,7 @@ public class HomeContract {
         void weatherRefreshError();
 
         void refreshWeather();
+
     }
 
 
@@ -59,7 +63,9 @@ public class HomeContract {
 
         android.view.View.OnClickListener getWeatherClickListener();
 
-        NavBaseDialog.Callback getCallback();
+        NavBaseDialog.Callback getNavCallback();
+
+        SearchBaseDialog.Callback getSearchCallback();
     }
 
 

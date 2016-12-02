@@ -84,6 +84,8 @@
             android:name=".ui.weather.WeatherActivity"
             android:screenOrientation="portrait" />
 
+        <activity android:name=".ui.search.SearchActivity"
+            android:screenOrientation="portrait"/>
 
     </application>
 

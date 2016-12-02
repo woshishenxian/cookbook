@@ -10,7 +10,7 @@ import com.nanke.cook.ui.BaseActivity;
 /**
  * Created by admin on 16/10/29.
  */
-public class SearchResultsActivity extends BaseActivity{
+public class SearchActivity extends BaseActivity{
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

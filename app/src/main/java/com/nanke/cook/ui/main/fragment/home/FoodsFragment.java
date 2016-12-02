@@ -77,12 +77,16 @@ public class FoodsFragment extends Fragment implements FoodsContract.View, Foote
         View view = inflater.inflate(R.layout.fragment_wraprecycler, null);
         ButterKnife.inject(this, view);
         initFragment();
-        foodsPresenter = new FoodsPresenter(this);
-
-        onRefresh();
         return view;
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        foodsPresenter = new FoodsPresenter(this);
+        onRefresh();
+    }
 
     private void initFragment() {
         this.id = getArguments().getInt("ID");
