@@ -3,6 +3,7 @@ package com.nanke.cook.view;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.ActivityCompat;
+import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.WindowManager;
@@ -89,7 +90,7 @@ public class SearchBaseDialog extends BaseDialog<SearchBaseDialog> {
 
 
     @OnClick(R.id.tv_enter)
-    public void startWeatherActivity() {
+    public void onEnterClick() {
         if (callback != null) {
             callback.query(mSearch.getQuery()+"");
         }

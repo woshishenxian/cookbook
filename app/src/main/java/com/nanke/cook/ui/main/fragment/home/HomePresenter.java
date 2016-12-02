@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -143,7 +144,10 @@ public class HomePresenter implements HomeContract.Presenter {
         return new SearchBaseDialog.Callback(){
             @Override
             public void query(String string) {
-                view.startSearchActivity(string);
+                if(!TextUtils.isEmpty(string)){
+                    view.startSearchActivity(string);
+                }
+
             }
         };
     }
