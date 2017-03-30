@@ -74,7 +74,7 @@ public class AboutActivity extends BaseActivity {
     }
 
     @OnClick(R.id.btn_project_home)
-    public void onProHomeClck(){
+    public void onProHomeClick(){
         startViewAction(BuildConfig.PROJECT_URL);
     }
 

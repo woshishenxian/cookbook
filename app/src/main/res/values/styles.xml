@@ -38,7 +38,7 @@
         <item name="tabView">@style/MainTabView</item>
     </style>
 
-    <style name="AppTheme" parent="GreenTheme">
+    <style name="AppTheme" parent="Theme.Base">
 
     </style>
 
@@ -170,6 +170,12 @@
         <item name="colorPrimary">@color/green</item>
         <item name="colorPrimaryDark">@color/dark_green</item>
         <item name="colorAccent">@color/accent_green</item>
+    </style>
+
+    <style name="Theme.Base" parent="AppBaseTheme.Dark">
+        <item name="colorPrimary">#fd7222</item>
+        <item name="colorPrimaryDark">#fd7222</item>
+        <item name="colorAccent">#fd7222</item>
     </style>
 
 
